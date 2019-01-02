@@ -6,9 +6,12 @@
     created, deadline and title %>
 <p>
   <strong>Order by:</strong>
-  <%= link_to_unless_current 'Time created', tasks_path(order: '1') %> |
-  <%= link_to_unless_current 'Deadline', tasks_path(order: '2') %> |
-  <%= link_to_unless_current 'Title', tasks_path(order: '3') %>
+  <%= link_to_if cookies[:order].match(/[23]/),
+                 'Time created', tasks_path(order: '1') %> |
+  <%= link_to_unless cookies[:order] == '2',
+                     'Deadline', tasks_path(order: '2') %> |
+  <%= link_to_unless cookies[:order] == '3',
+                     'Title', tasks_path(order: '3') %>
 </p>
 
 <%# list ongoing tasks %>

@@ -19,11 +19,24 @@ module TasksHelper
     end
   end
 
-  # sanitize and translate order parameter before using it
+  # change order stored in the cookies if needed
+  # and return the new order
   def order
-    if params[:order] == '2'
+    set_order_cookie
+    order_in_sql
+  end
+
+  # change order cookie if needed
+  def set_order_cookie
+    cookies[:order] = params[:order] unless params[:order].nil?
+  end
+
+  # read order from cookies, sanitize it and
+  # translate it into sql fragment
+  def order_in_sql
+    if cookies[:order] == '2'
       'deadline ASC'
-    elsif params[:order] == '3'
+    elsif cookies[:order] == '3'
       'title ASC'
     else
       'created_at DESC'
