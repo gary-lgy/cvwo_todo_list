@@ -42,4 +42,9 @@ class Task < ApplicationRecord
       'normal'
     end
   end
+
+  # toggle between completed and uncompleted
+  def toggle_completed
+    update completed: !completed
+  end
 end

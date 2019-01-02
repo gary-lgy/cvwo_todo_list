@@ -47,6 +47,13 @@ class TasksController < ApplicationController
     end
   end
 
+  # toggle between completed and uncompleted
+  def toggle_completed
+    @task = Task.find(params[:id])
+    @task.toggle_completed
+    redirect_to tasks_path
+  end
+
   # delete a task
   def destroy
     @task = Task.find(params[:id])
