@@ -1,0 +1,22 @@
+<h1>To-do List</h1>
+
+<%# links to give the user the choice to order tasks by time
+    created, deadline and title %>
+<p>
+  <strong>Order by:</strong>
+  <%= link_to_unless_current 'Time created', tasks_path(order: '1') %> |
+  <%= link_to_unless_current 'Deadline', tasks_path(order: '2') %> |
+  <%= link_to_unless_current 'Title', tasks_path(order: '3') %>
+</p>
+
+<%# list ongoing tasks %>
+<h2>Ongoing</h2>
+<% if @ongoing.any? %>
+  <%= render @ongoing %>
+<% else %>
+  <p>Nothing planned. Have a nice day!</p>
+<% end %>
+
+<%# list archived tasks %>
+<h2>Archived (<%= @archived.size %>)</h2>
+<%= render @archived %>

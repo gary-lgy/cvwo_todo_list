@@ -1,0 +1,26 @@
+<%# render a task along with its description, deadline, and tags %>
+<%= content_tag :div, class: task.status + '_task' do %>
+  <strong><%= "#{task_counter + 1}. #{task.title}" %></strong><br>
+  <ul>
+    <% unless task.description.nil? %>
+      <li>
+        <strong>Description: </strong>
+        <%= truncate task.description, length: 30 %>
+      </li>
+    <% end %>
+
+    <% unless task.deadline.nil? %>
+      <li>
+        <strong>Deadline: </strong>
+        <%= task.deadline %>
+      </li>
+    <% end %>
+
+    <% if task.tags.any? %>
+      <li>
+        <strong>Tags:</strong>
+        <em><%= task.tags.pluck(:name).join ', ' %></em>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
