@@ -12,7 +12,30 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  # build new task
+  def new
+    @task = Task.new
+  end
+
+  # save newly built task
+  def create
+    @task = Task.new task_params
+    @task.completed = false
+    if @task.save
+      flash[:notice] = 'Task saved successfully.'
+      redirect_to @task
+    else
+      flash.now[:error] = @task.errors.full_messages.join("\n")
+      render 'new'
+    end
+  end
+
   private
+
+  # allow only permitted parameters
+  def task_params
+    params.require(:task).permit(:title, :description, :deadline)
+  end
 
   # sanitize and translate order parameter before using it
   def order

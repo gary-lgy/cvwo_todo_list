@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <%# display reminder for urgent tasks and alert for overdue tasks %>
+    <%# display reminder, alert and error messages %>
     <% flash.each do |cat, msg| %>
       <%= content_tag :div, msg, class: cat %>
     <% end %>

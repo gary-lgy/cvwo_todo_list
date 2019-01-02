@@ -1,0 +1,21 @@
+<%# form to build a new task %>
+<%= form_with model: @task do |f| %>
+  <fieldset>
+    <legend>Details</legend>
+    <p>
+      <%= f.label :title, 'Title: ' %>
+      <%= f.text_field :title, required: true %><br>
+    </p>
+    <p>
+      <%= f.label :description, 'Description: ' %>
+      <%= f.text_area :description, size: '30x5' %><br>
+    </p>
+    <p>
+      <%= f.label :deadline, 'Deadline: ' %>
+      <%= f.datetime_select :deadline %><br>
+    </p>
+    <p>
+      <%= f.submit 'Create task' %>
+    </p>
+  </fieldset>
+<% end %>
