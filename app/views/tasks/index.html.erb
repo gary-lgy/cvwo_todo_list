@@ -12,11 +12,11 @@
 <%# list ongoing tasks %>
 <h2>Ongoing</h2>
 <% if @ongoing.any? %>
-  <%= render @ongoing %>
+  <%= render partial: 'task_summary', collection: @ongoing, as: 'task' %>
 <% else %>
   <p>Nothing planned. Have a nice day!</p>
 <% end %>
 
 <%# list archived tasks %>
 <h2>Archived (<%= @archived.size %>)</h2>
-<%= render @archived %>
+<%= render partial: 'task_summary', collection: @archived, as: 'task' %>
