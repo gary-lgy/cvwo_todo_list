@@ -30,6 +30,23 @@ class TasksController < ApplicationController
     end
   end
 
+  # edit a task
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  # save changes to a task
+  def update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      flash[:notice] = 'Task updated successfully'
+      redirect_to @task
+    else
+      flash.now[:error] = @task.errors.full_messages.join("\n")
+      render 'edit'
+    end
+  end
+
   private
 
   # allow only permitted parameters

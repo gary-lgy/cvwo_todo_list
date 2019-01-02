@@ -1,4 +1,4 @@
-<%# form to build a new task %>
+<%# form to build a new task or edit and existing task %>
 <%= form_with model: @task do |f| %>
   <fieldset>
     <legend>Details</legend>
@@ -15,7 +15,7 @@
       <%= f.datetime_select :deadline %><br>
     </p>
     <p>
-      <%= f.submit 'Create task' %>
+      <%= f.submit %>
     </p>
   </fieldset>
 <% end %>
