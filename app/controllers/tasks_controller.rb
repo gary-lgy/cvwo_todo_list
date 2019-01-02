@@ -7,6 +7,11 @@ class TasksController < ApplicationController
     add_alert_for_overdue
   end
 
+  # show details of a task
+  def show
+    @task = Task.find(params[:id])
+  end
+
   private
 
   # sanitize and translate order parameter before using it

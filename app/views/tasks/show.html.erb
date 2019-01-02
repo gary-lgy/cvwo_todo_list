@@ -1,0 +1,30 @@
+<%# details of a task %>
+<h2><%= @task.title %></h2>
+
+<ul>
+  <li>
+    <strong>Status: </strong>
+    <%= @task.status %>
+  </li>
+
+  <% if @task.description.present? %>
+    <li>
+      <strong>Description: </strong>
+      <%= @task.description %>
+    </li>
+  <% end %>
+
+  <% if @task.deadline.present? %>
+    <li>
+      <strong>Deadline: </strong>
+      <%= @task.deadline %>
+    </li>
+  <% end %>
+
+  <% if @task.tags.any? %>
+    <li>
+      <strong>Tags:</strong>
+      <em><%= @task.tags.pluck(:name).join(", ") %></em>
+    </li>
+  <% end %>
+</ul>
