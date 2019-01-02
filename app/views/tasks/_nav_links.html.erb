@@ -1,0 +1,7 @@
+<%# navigational links for tasks %>
+<%= link_to task.completed ? 'Uncomplete' : 'Complete',
+            toggle_completed_task_path(task) %> |
+<%= link_to 'View Details', task_path(task) %> |
+<%= link_to 'Edit', edit_task_path(task) %> |
+<%= link_to 'Delete', task_path(task), method: :delete,
+            data: { confirm: 'Are you sure?' } %>

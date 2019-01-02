@@ -30,9 +30,5 @@
 </ul>
 
 <%# navigational links %>
-<%= link_to @task.completed ? 'Uncomplete' : 'Complete',
-            toggle_completed_task_path(@task) %> |
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %> |
-<%= link_to 'Delete', task_path(@task), method: :delete,
-                      data: { confirm: 'Are you sure?' } %>
+<%= render partial: 'nav_links', locals: { task: @task } %> |
+<%= link_to 'Back', tasks_path %>

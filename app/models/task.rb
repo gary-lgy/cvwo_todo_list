@@ -8,43 +8,47 @@ class Task < ApplicationRecord
   scope :archived, -> { where completed: true }
   scope :ongoing, -> { where completed: false }
 
-  # helper methods to query the status of the task
-  def archived?
-    completed
+  # toggle between completed and uncompleted
+  def toggle_completed
+    update completed: !completed
   end
 
-  def ongoing?
-    not archived?
+  # save a newly created task
+  def save_new
+    self.completed = false
+    save
   end
 
-  def normal?
-    ongoing? && (deadline.nil? || deadline > 1.day.from_now)
-  end
-
+  # helper methods to query the status of a task
   def urgent?
-    ongoing? && !deadline.nil? &&
+    !completed && !deadline.nil? &&
       deadline < 1.day.from_now && deadline > Time.now
   end
 
   def overdue?
-    ongoing? && !deadline.nil? &&
+    !completed && !deadline.nil? &&
       deadline < Time.now
   end
 
   def status
-    if archived?
+    if completed
       'archived'
-    elsif urgent?
-      'urgent'
-    elsif overdue?
+    elsif deadline.nil? || deadline > 1.day.from_now
+      'normal'
+    elsif deadline < Time.now
       'overdue'
     else
-      'normal'
+      'urgent'
     end
   end
 
-  # toggle between completed and uncompleted
-  def toggle_completed
-    update completed: !completed
+  # count urgent tasks
+  def self.count_urgent
+    ongoing.count &:urgent?
+  end
+
+  # count overdue tasks
+  def self.count_overdue
+    ongoing.count &:overdue?
   end
 end

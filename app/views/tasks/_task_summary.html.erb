@@ -2,12 +2,7 @@
 <%= content_tag :div, class: task.status + '_task' do %>
   <strong><%= "#{task_counter + 1}. #{task.title}" %></strong><br>
   <p>
-    <%= link_to task.completed ? 'Uncomplete' : 'Complete',
-                toggle_completed_task_path(task) %> |
-    <%= link_to 'View Details', task_path(task) %> |
-    <%= link_to 'Edit', edit_task_path(task) %> |
-    <%= link_to 'Delete', task_path(task), method: :delete,
-                          data: { confirm: 'Are you sure?' } %>
+    <%= render partial: 'nav_links', locals: { task: task } %>
   </p>
   <ul>
     <% unless task.description.nil? %>
