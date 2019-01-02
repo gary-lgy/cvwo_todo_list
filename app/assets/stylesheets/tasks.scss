@@ -1,3 +1,16 @@
 // Place all the styles related to the Tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// temporary styles for development purposes
+.urgent_task {
+  color: red;
+}
+
+.overdue_task {
+  color: indianred;
+}
+
+.archived_task {
+  color: gray;
+}
