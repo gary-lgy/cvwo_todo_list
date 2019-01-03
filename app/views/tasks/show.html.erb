@@ -30,5 +30,4 @@
 </ul>
 
 <%# navigational links %>
-<%= render partial: 'nav_links', locals: { task: @task } %> |
-<%= link_to 'Back', tasks_path %>
+<%= render 'nav_links', task: @task, on_homepage: false %>

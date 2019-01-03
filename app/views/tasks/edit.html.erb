@@ -2,4 +2,5 @@
 
 <%= render 'task_form' %>
 
-<%= link_to 'Back', tasks_path %>
+<%= link_to 'Back',
+            params[:source] == 'index' ? tasks_path : @task %>
