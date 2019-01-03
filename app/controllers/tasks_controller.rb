@@ -1,4 +1,7 @@
 class TasksController < ApplicationController
+  # TODO: display time in user's timezone
+  # TODO: tags (nested or not?)
+  # TODO: store user_id in a cookie
   # get tasks by category
   def index
     @archived = Task.archived.order(helpers.order)
