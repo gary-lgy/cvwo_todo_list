@@ -1,5 +1,5 @@
 <%# form to build a new task or edit and existing task %>
-<%= form_with model: @task do |f| %>
+<%= form_with model: @task, local: true do |f| %>
   <fieldset>
     <legend>Details</legend>
     <p>
@@ -13,6 +13,25 @@
     <p>
       <%= f.label :deadline, 'Deadline: ' %>
       <%= f.datetime_select :deadline %><br>
+    </p>
+    <%# display each tag and give user the option to remove them %>
+    Tags:
+    <p>
+      <% @task.tags.each do |tag| %>
+        <div class="tag">
+          <%= tag.name %>
+          <%= hidden_field_tag 'task[tags][][name]', tag.name %>
+          <%= hidden_field_tag 'task[tags][][remove]' %>
+          <%# JavaScript link to mark the 'remove'
+              field and hide the div %>
+          <%= link_to 'Remove', '#', id: 'remove_tag' %>
+          <br>
+        </div>
+      <% end %>
+    </p>
+    <%# JavaScript link to add a new tag %>
+    <p>
+      <%= link_to_add_tag %>
     </p>
     <p>
       <%= f.submit %>
