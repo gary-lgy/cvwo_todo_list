@@ -23,7 +23,8 @@ class TasksController < ApplicationController
   # save newly built task
   def create
     @task = Task.new task_params
-    if @task.save_new && helpers.add_or_remove_tags
+    if @task.save_new
+      helpers.add_or_remove_tags
       flash[:notice] = 'Task saved successfully.'
       redirect_to @task
     else
@@ -40,7 +41,8 @@ class TasksController < ApplicationController
   # save changes to a task
   def update
     @task = Task.find(params[:id])
-    if @task.update(task_params) && helpers.add_or_remove_tags
+    if @task.update(task_params)
+      helpers.add_or_remove_tags
       flash[:notice] = 'Task updated successfully'
       redirect_to @task
     else
