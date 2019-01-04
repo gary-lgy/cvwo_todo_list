@@ -4,12 +4,11 @@
   <% @tags.each do |tag| %>
     <li>
       <strong>
-        <%= link_to_unless tag.tasks.count == 0,
-                           "#{tag.name} (#{tag.tasks.count})",
-                           tag_path(tag, source: tags_path) %>
+        <%= link_to "#{tag.name} (#{tag.tasks.count})",
+                           tag_path(tag) %>
       </strong>
     </li>
   <% end %>
 </ul>
 
-<%= link_to 'Back', tasks_path %>
+<%= link_to_tasks_path %>

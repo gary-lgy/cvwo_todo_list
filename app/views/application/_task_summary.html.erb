@@ -2,7 +2,10 @@
 
 <%# render a task along with its description, deadline, and tags %>
 <%= content_tag :div, class: task.status + '_task' do %>
-  <strong><%= "#{task_counter + 1}. #{task.title}" %></strong><br>
+  <strong>
+    <%= "#{task_counter + 1}. " %>
+    <%= link_to task.title, task_path(task) %>
+  </strong><br>
   <p>
     <%= render 'nav_links', task: task, on_homepage: true %>
   </p>
@@ -24,7 +27,11 @@
     <% if task.tags.any? %>
       <li>
         <strong>Tags:</strong>
-        <em><%= task.tags.pluck(:name).join ', ' %></em>
+        <em>
+          <% task.tags.each do |tag| %>
+            <%= link_to tag.name, tag_path(tag) %>
+          <% end %>
+        </em>
       </li>
     <% end %>
   </ul>

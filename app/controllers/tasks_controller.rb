@@ -55,13 +55,14 @@ class TasksController < ApplicationController
   def toggle_completed
     @task = Task.find(params[:id])
     @task.toggle_completed
-    redirect_to tasks_path
+    redirect_back fallback_location: tasks_path
   end
 
   # delete a task
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
+    flash[:notice] = 'Task deleted successfully'
     redirect_to tasks_path
   end
 

@@ -43,4 +43,9 @@ module TasksHelper
     end
   end
 
+  # generate a link to tasks#index
+  def link_to_tasks_path
+    link_to 'Back to Tasks', tasks_path
+  end
+
 end

@@ -1,6 +1,8 @@
-<h1><em><%= @tag.name %></em></h1>
+<h1>View Tag</h1>
+<h2><em><%= @tag.name %></em></h2>
 
-<%= link_to 'Back', params[:source] %>
+<%= link_to_tasks_path %>
+<%= link_to_tags_path %>
 
 <%= render partial: 'task_list',
            locals: { ongoing: @ongoing,
