@@ -6,15 +6,8 @@
 <%= link_to task.completed ? 'Uncomplete' : 'Complete',
             toggle_completed_task_path(task) %> |
 
-<%# ------ VIEW DETAILS ------ %>
-<%# include the 'View Details' button only if on homepage %>
-<% if on_homepage %>
-  <%= link_to 'View Details', task_path(task) %> |
-<% end %>
-
 <%# ------ EDIT ------ %>
-<%= link_to 'Edit',edit_task_path(task,
-      source: on_homepage ? 'index' : 'show') %> |
+<%= link_to 'Edit', edit_task_path(task) %> |
 
 <%# ------ DELETE ------ %>
 <%= link_to 'Delete', task_path(task), method: :delete,
@@ -23,5 +16,5 @@
 <%# ------ BACK ------ %>
 <%# include the 'Back' button only if viewing a task %>
 <% unless on_homepage %>
-   | <%= link_to 'Back', tasks_path %>
+   | <%= link_to_tasks_path %>
 <% end %>

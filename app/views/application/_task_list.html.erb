@@ -5,11 +5,14 @@
 <p>
   <strong>Order by:</strong>
   <%= link_to_if cookies[:order].match(/[23]/),
-                 'Time created', order_path + '?order=1' %> |
+                 'Time created',
+                 append_query_string_to_url(order_path, 'order', '1') %> |
   <%= link_to_unless cookies[:order] == '2',
-                     'Deadline', order_path + '?order=2' %> |
+                     'Deadline',
+                     append_query_string_to_url(order_path, 'order', '2') %> |
   <%= link_to_unless cookies[:order] == '3',
-                     'Title', order_path + '?order=3' %>
+                     'Title',
+                     append_query_string_to_url(order_path, 'order', '3') %>
 </p>
 
 <%# list ongoing tasks %>

@@ -1,7 +1,7 @@
 <h1>To-do List</h1>
 
 <%= link_to 'New Task', new_task_path %> |
-<%= link_to 'Manage Tags', tags_path %>
+<%= link_to_tags_path %>
 
 <%= render partial: 'task_list',
            locals: { ongoing: @ongoing,

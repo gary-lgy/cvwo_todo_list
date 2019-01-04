@@ -1,7 +1,5 @@
 class TagsController < ApplicationController
   # TODO: implement tag renaming and deletion
-  # TODO: add local variable names to partials and move shared partials to application folder
-  # TODO: rewrite Back buttons (with JavaScript)?
   # list all tags
   def index
     @tags = Tag.order(name: :asc)

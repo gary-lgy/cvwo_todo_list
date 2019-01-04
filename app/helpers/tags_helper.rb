@@ -27,4 +27,9 @@ module TagsHelper
     end
   end
 
+  # generate a link to tags#index
+  def link_to_tags_path
+    link_to 'Manage Tags', tags_path
+  end
+
 end
