@@ -1,27 +1,9 @@
 <h1>To-do List</h1>
 
-<%= link_to 'New Task', new_task_path %>
+<%= link_to 'New Task', new_task_path %> |
+<%= link_to 'Manage Tags', tags_path %>
 
-<%# links to give the user the choice to order tasks by time
-    created, deadline and title %>
-<p>
-  <strong>Order by:</strong>
-  <%= link_to_if cookies[:order].match(/[23]/),
-                 'Time created', tasks_path(order: '1') %> |
-  <%= link_to_unless cookies[:order] == '2',
-                     'Deadline', tasks_path(order: '2') %> |
-  <%= link_to_unless cookies[:order] == '3',
-                     'Title', tasks_path(order: '3') %>
-</p>
-
-<%# list ongoing tasks %>
-<h2>Ongoing</h2>
-<% if @ongoing.any? %>
-  <%= render partial: 'task_summary', collection: @ongoing, as: 'task' %>
-<% else %>
-  <p>Nothing planned. Have a nice day!</p>
-<% end %>
-
-<%# list archived tasks %>
-<h2>Archived (<%= @archived.size %>)</h2>
-<%= render partial: 'task_summary', collection: @archived, as: 'task' %>
+<%= render partial: 'task_list',
+           locals: { ongoing: @ongoing,
+                     archived: @archived,
+                     order_path: tasks_path } %>

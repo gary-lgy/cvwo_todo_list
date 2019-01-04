@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :tasks do
     get 'toggle_completed', on: :member
   end
+  resources :tags, param: :name
 end

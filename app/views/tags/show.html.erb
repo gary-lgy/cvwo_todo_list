@@ -1,0 +1,8 @@
+<h1><em><%= @tag.name %></em></h1>
+
+<%= link_to 'Back', params[:source] %>
+
+<%= render partial: 'tasks/task_list',
+           locals: { ongoing: @ongoing,
+                     archived: @archived,
+                     order_path: tag_path(@tag)} %>

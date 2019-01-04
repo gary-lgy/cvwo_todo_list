@@ -2,7 +2,7 @@
 <%= content_tag :div, class: task.status + '_task' do %>
   <strong><%= "#{task_counter + 1}. #{task.title}" %></strong><br>
   <p>
-    <%= render 'nav_links', task: task, on_homepage: true %>
+    <%= render 'tasks/nav_links', task: task, on_homepage: true %>
   </p>
   <ul>
     <% unless task.description.nil? %>

@@ -1,0 +1,25 @@
+<%# local variables: ongoing, archived, order_path %>
+
+<%# links to give the user the choice to order tasks by time
+    created, deadline and title %>
+<p>
+  <strong>Order by:</strong>
+  <%= link_to_if cookies[:order].match(/[23]/),
+                 'Time created', order_path + '?order=1' %> |
+  <%= link_to_unless cookies[:order] == '2',
+                     'Deadline', order_path + '?order=2' %> |
+  <%= link_to_unless cookies[:order] == '3',
+                     'Title', order_path + '?order=3' %>
+</p>
+
+<%# list ongoing tasks %>
+<h2>Ongoing</h2>
+<% if ongoing.any? %>
+  <%= render partial: 'tasks/task_summary', collection: ongoing, as: 'task' %>
+<% else %>
+  <p>Nothing planned. Have a nice day!</p>
+<% end %>
+
+<%# list archived tasks %>
+<h2>Archived (<%= archived.size %>)</h2>
+<%= render partial: 'tasks/task_summary', collection: archived, as: 'task' %>
