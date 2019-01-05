@@ -32,4 +32,13 @@ module TagsHelper
     link_to 'Manage Tags', tags_path
   end
 
+  # generate a link to delete tags
+  def link_to_delete_tag(tag, display)
+    link_to display,
+            tag_path(tag),
+            method: :delete,
+            data: { confirm: 'Sure to delete this tag? '\
+              'This does not delete its tasks. ' }
+  end
+
 end
