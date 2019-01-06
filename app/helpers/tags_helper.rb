@@ -10,6 +10,7 @@ module TagsHelper
             data: { fields: fields.delete("\n") }
   end
 
+  # TODO: fix bug: cannot add tags on creating tasks
   # add or remove tags as required
   def add_or_remove_tags
     if params[:task][:tags].respond_to? 'each'

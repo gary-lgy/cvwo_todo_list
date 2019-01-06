@@ -1,6 +1,4 @@
 class TasksController < ApplicationController
-  # TODO: display time in user's timezone
-  # TODO: tags (nested or not?)
   # TODO: store user_id in a cookie
   # get tasks by category
   def index
@@ -22,7 +20,7 @@ class TasksController < ApplicationController
 
   # save newly built task
   def create
-    @task = Task.new task_params
+    @task = Task.new(task_params)
     if @task.save_new
       helpers.add_or_remove_tags
       flash[:notice] = 'Task saved successfully.'
@@ -70,6 +68,10 @@ class TasksController < ApplicationController
 
   # allow only permitted parameters
   def task_params
-    params.require(:task).permit(:title, :description, :deadline)
+    whitelisted = params.require(:task).permit(
+      :title, :description, :deadline
+    )
+    helpers.task_params_in_utc whitelisted
   end
+
 end

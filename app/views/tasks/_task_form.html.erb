@@ -12,7 +12,8 @@
     </p>
     <p>
       <%= f.label :deadline, 'Deadline: ' %>
-      <%= f.datetime_select :deadline %><br>
+      <%= f.datetime_select :deadline,
+            selected: utc_to_user_time(@task.deadline || Time.zone.now) %><br>
     </p>
     <%# display each tag and give user the option to remove them %>
     Tags:

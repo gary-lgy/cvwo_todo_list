@@ -17,7 +17,7 @@
   <% if @task.deadline.present? %>
     <li>
       <strong>Deadline: </strong>
-      <%= @task.deadline %>
+      <%= utc_to_user_time(@task.deadline).friendly_format %>
     </li>
   <% end %>
 

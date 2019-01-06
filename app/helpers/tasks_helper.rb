@@ -43,9 +43,18 @@ module TasksHelper
     end
   end
 
+  # TODO: move link helpers to separate file
   # generate a link to tasks#index
   def link_to_tasks_path
     link_to 'Back to Tasks', tasks_path
+  end
+
+  # convert deadline as specified in params to UTC
+  def task_params_in_utc(task_params)
+    deadline = extract_time_from_params(task_params)
+    { title: task_params[:title],
+      description: task_params[:description],
+      deadline: deadline }
   end
 
 end
