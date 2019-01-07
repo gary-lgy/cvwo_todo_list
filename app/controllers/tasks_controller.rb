@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-  # TODO: add foreign key constraints on tags_tasks table
   # get tasks by category
   def index
     @archived = current_user_tasks.archived.order(helpers.order)
