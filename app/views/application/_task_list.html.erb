@@ -4,7 +4,7 @@
     created, deadline and title %>
 <p>
   <strong>Order by:</strong>
-  <%= link_to_if cookies[:order].match(/[23]/),
+  <%= link_to_if cookies[:order].nil? || cookies[:order].match(/[23]/),
                  'Time created',
                  append_query_string_to_url(order_path, 'order', '1') %> |
   <%= link_to_unless cookies[:order] == '2',

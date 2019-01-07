@@ -26,26 +26,31 @@ module TasksHelper
     order_in_sql
   end
 
-  # change order cookie if needed
+  # read order from params, sanitize it and
+  # store it in a permanent cookie
   def set_order_cookie
-    cookies[:order] = params[:order] unless params[:order].nil?
+    cookies.permanent[:order] =
+      params[:order]&.match(/[23]/) ? params[:order] : '1'
   end
 
-  # read order from cookies, sanitize it and
-  # translate it into sql fragment
+  # translate order cookie into sql fragment
   def order_in_sql
-    if cookies[:order] == '2'
+    case cookies[:order]
+    when '2'
       'deadline ASC'
-    elsif cookies[:order] == '3'
+    when '3'
       'title ASC'
     else
       'created_at DESC'
     end
   end
 
-  # generate a link to tasks#index
-  def link_to_tasks_path
-    link_to 'Back to Tasks', tasks_path
+  # convert deadline as specified in params to UTC
+  def task_params_in_utc(task_params)
+    deadline = extract_time_from_params(task_params)
+    { title: task_params[:title],
+      description: task_params[:description],
+      deadline: deadline }
   end
 
 end

@@ -7,6 +7,7 @@
         <%= link_to "#{tag.name} (#{tag.tasks.count})",
                            tag_path(tag) %>
       </strong>
+      <%= link_to_delete_tag(tag, 'Delete') %>
     </li>
   <% end %>
 </ul>

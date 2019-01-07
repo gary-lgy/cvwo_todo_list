@@ -15,3 +15,10 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require_self
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.cookie =
+        'timezone_offset=' + new Date().getTimezoneOffset() + '; '
+        + 'path=/';
+})
