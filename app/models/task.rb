@@ -1,8 +1,8 @@
 class Task < ApplicationRecord
   has_and_belongs_to_many :tags
 
-  # task title cannot be blank
-  validates :title, presence: true
+  # task title and user_id cannot be blank
+  validates :title, :user_id, presence: true
 
   # scopes for retrieving different categories of tasks
   scope :archived, -> { where completed: true }
@@ -42,13 +42,4 @@ class Task < ApplicationRecord
     end
   end
 
-  # count urgent tasks
-  def self.count_urgent
-    ongoing.count &:urgent?
-  end
-
-  # count overdue tasks
-  def self.count_overdue
-    ongoing.count &:overdue?
-  end
 end

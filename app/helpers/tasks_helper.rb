@@ -1,7 +1,23 @@
 module TasksHelper
+  # return all tasks owned by the current user
+  # user_id is retrieved from a cookie by the helper method user_id
+  def current_user_tasks
+    Task.where(user_id: user_id)
+  end
+
+  # count urgent tasks
+  def count_urgent(tasks)
+    tasks.count &:urgent?
+  end
+
+  # count overdue tasks
+  def count_overdue(tasks)
+    tasks.count &:overdue?
+  end
+
   # add a flash reminder message if there are urgent tasks
-  def add_reminder_for_urgent
-    urgent_count = Task.count_urgent
+  def add_reminder_for_urgent(tasks)
+    urgent_count = count_urgent(tasks)
     if urgent_count.positive?
       flash.now[:reminder] = "#{urgent_count}
         #{urgent_count == 1 ? 'task is' : 'tasks are'}
@@ -10,8 +26,8 @@ module TasksHelper
   end
 
   # add a flash alert message if there are overdue tasks
-  def add_alert_for_overdue
-    overdue_count = Task.count_overdue
+  def add_alert_for_overdue(tasks)
+    overdue_count = count_overdue(tasks)
     if overdue_count.positive?
       flash.now[:alert] = "#{overdue_count}
         #{overdue_count == 1 ? 'task is' : 'tasks are'}

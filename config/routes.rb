@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     get 'toggle_completed', on: :member
   end
   resources :tags, param: :name
+  get '/welcome', to: 'application#welcome'
 end

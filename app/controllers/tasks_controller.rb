@@ -1,16 +1,16 @@
 class TasksController < ApplicationController
-  # TODO: store user_id in a cookie
+  # TODO: add foreign key constraints on tags_tasks table
   # get tasks by category
   def index
-    @archived = Task.archived.order(helpers.order)
-    @ongoing = Task.ongoing.order(helpers.order)
-    helpers.add_reminder_for_urgent
-    helpers.add_alert_for_overdue
+    @archived = current_user_tasks.archived.order(helpers.order)
+    @ongoing = current_user_tasks.ongoing.order(helpers.order)
+    helpers.add_reminder_for_urgent(@ongoing)
+    helpers.add_alert_for_overdue(@ongoing)
   end
 
   # show details of a task
   def show
-    @task = Task.find(params[:id])
+    @task = current_user_tasks.find(params[:id])
   end
 
   # build new task
@@ -33,12 +33,12 @@ class TasksController < ApplicationController
 
   # edit a task
   def edit
-    @task = Task.find(params[:id])
+    @task = current_user_tasks.find(params[:id])
   end
 
   # save changes to a task
   def update
-    @task = Task.find(params[:id])
+    @task = current_user_tasks.find(params[:id])
     if @task.update(task_params)
       helpers.add_or_remove_tags(@task)
       flash[:notice] = 'Task updated successfully'
@@ -51,14 +51,14 @@ class TasksController < ApplicationController
 
   # toggle between completed and uncompleted
   def toggle_completed
-    @task = Task.find(params[:id])
+    @task = current_user_tasks.find(params[:id])
     @task.toggle_completed
     redirect_back fallback_location: tasks_path
   end
 
   # delete a task
   def destroy
-    @task = Task.find(params[:id])
+    @task = current_user_tasks.find(params[:id])
     @task.destroy
     flash[:notice] = 'Task deleted successfully'
     redirect_to tasks_path
@@ -71,7 +71,13 @@ class TasksController < ApplicationController
     whitelisted = params.require(:task).permit(
       :title, :description, :deadline
     )
-    helpers.task_params_in_utc whitelisted
+    params_in_utc = helpers.task_params_in_utc whitelisted
+    helpers.append_user_id params_in_utc
+  end
+
+  # alias to the helper method
+  def current_user_tasks
+    helpers.current_user_tasks
   end
 
 end
