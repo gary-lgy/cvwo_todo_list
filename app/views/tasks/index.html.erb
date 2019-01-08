@@ -2,8 +2,16 @@
 
 <%= link_to 'New Task', new_task_path %> |
 <%= link_to_tags_path %>
+<p>
+  <%= render 'search_form' %>
+</p>
+
+<p>
+  <%= render 'order_links', order_path: tasks_path %>
+</p>
 
 <%= render partial: 'task_list',
-           locals: { ongoing: @ongoing,
-                     archived: @archived,
-                     order_path: tasks_path } %>
+           locals: {
+               ongoing: @ongoing,
+               archived: @archived
+           } %>

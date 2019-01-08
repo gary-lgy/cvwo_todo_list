@@ -69,4 +69,15 @@ module TasksHelper
       deadline: deadline }
   end
 
+  # sort search result (with duplicates) by the number of
+  # times each record appears in the result
+  # and remove duplicates
+  def process_search_result(tasks)
+    relevance_count = Hash.new 0
+    tasks.each do |task|
+      relevance_count[task] += 1
+    end
+    tasks.uniq.sort_by { |task| -relevance_count[task] }
+  end
+
 end

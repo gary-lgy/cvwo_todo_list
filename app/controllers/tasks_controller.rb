@@ -12,6 +12,14 @@ class TasksController < ApplicationController
     @task = current_user_tasks.find(params[:id])
   end
 
+  # search for tasks with the given tags
+  def search
+    tag_names = params[:tag_names].split(' ')
+    tasks = current_user_tasks.joins(:tags).where('tags.name' => tag_names)
+    @ongoing = helpers.process_search_result tasks.ongoing
+    @archived = helpers.process_search_result tasks.archived
+  end
+
   # build new task
   def new
     @task = Task.new

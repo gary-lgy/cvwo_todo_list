@@ -1,0 +1,15 @@
+<h1>Search Result</h1>
+
+<%= link_to_tasks_path %>
+
+<p>
+  <% if @ongoing.any?  || @archived.any? %>
+    <%= render partial: 'task_list',
+               locals: {
+                   ongoing: @ongoing,
+                   archived: @archived
+               } %>
+  <% else %>
+    <em>No tasks match your search. </em>
+  <% end %>
+</p>

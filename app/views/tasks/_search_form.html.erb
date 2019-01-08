@@ -1,0 +1,11 @@
+<%# Search box to search tasks by tag names %>
+<%= form_tag search_tasks_path, method: 'get' do %>
+  <%= label_tag :tag_names do %>
+    <strong>Search: </strong>
+  <% end %>
+  <%= text_field_tag :tag_names, nil,
+                     placeholder: 'Enter tag names, separated by space',
+                     size: 30,
+                     autofocus: true %>
+  <%= submit_tag 'Search' %>
+<% end %>

@@ -1,0 +1,13 @@
+<%# local variables: order_path %>
+<%# links to give the user the choice to order tasks by time
+    created, deadline and title %>
+<strong>Order by:</strong>
+<%= link_to_if cookies[:order].nil? || cookies[:order].match(/[23]/),
+               'Time created',
+               append_query_string_to_url(order_path, 'order', '1') %> |
+<%= link_to_unless cookies[:order] == '2',
+                   'Deadline',
+                   append_query_string_to_url(order_path, 'order', '2') %> |
+<%= link_to_unless cookies[:order] == '3',
+                   'Title',
+                   append_query_string_to_url(order_path, 'order', '3') %>

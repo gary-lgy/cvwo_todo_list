@@ -5,7 +5,12 @@
 <%= link_to_tags_path %>
 <%= link_to_delete_tag(@tag, 'Delete Tag') %>
 
+<p>
+  <%= render 'order_links', order_path: tag_path(@tag) %>
+</p>
+
 <%= render partial: 'task_list',
-           locals: { ongoing: @ongoing,
-                     archived: @archived,
-                     order_path: tag_path(@tag)} %>
+           locals: {
+               ongoing: @ongoing,
+               archived: @archived
+           } %>
