@@ -54,6 +54,10 @@ module LinkIconHelper
     icon 'fas', 'calendar-day', class: 'details-icon'
   end
 
+  def tag_icon
+    icon 'fas', 'tags', class: 'details-icon'
+  end
+
   ############################################
   #---------- Link-on-icon helpers ----------#
   ############################################

@@ -28,16 +28,16 @@
 
     <% if task.tags.any? %>
       <p>
-        <strong>Tags:</strong>
-          <% task.tags.each do |tag| %>
-            <%= tag_button(tag) %>
-          <% end %>
+        <%= tag_icon %>
+        <% task.tags.each do |tag| %>
+          <%= tag_button(tag) %>
+        <% end %>
       </p>
     <% end %>
+  </div>
 
-    <%# edit, delete %>
-    <p>
-      <%= render 'nav_links', task: task %>
-    </p>
+  <%# edit, delete %>
+  <div class="card-footer">
+    <%= render 'nav_links', task: task %>
   </div>
 </div>
