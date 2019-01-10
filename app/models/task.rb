@@ -8,9 +8,11 @@ class Task < ApplicationRecord
   scope :completed, -> { where completed: true }
   scope :ongoing, -> { where completed: false }
 
-  # toggle between completed and uncompleted
+  # toggle between completed and imcomplete
+  # return the final state of the task
   def toggle_completed
     update completed: !completed
+    completed
   end
 
   # save a newly created task

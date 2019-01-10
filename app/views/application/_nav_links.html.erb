@@ -3,12 +3,7 @@
 <%# navigational links for tasks %>
 
 <%# ------ EDIT ------ %>
-<%= link_to edit_task_path(task) do %>
-  <%= icon 'fas', 'edit', class: 'action-icon' %>
-<% end %>
+<%= edit_task_icon(task) %>
 
 <%# ------ DELETE ------ %>
-<%= link_to task_path(task), method: :delete,
-            data: { confirm: 'Are you sure?' } do %>
-  <%= icon 'far', 'trash-alt', class: 'action-icon' %>
-<% end %>
+<%= destroy_task_icon(task) %>

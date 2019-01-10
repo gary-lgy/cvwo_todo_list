@@ -51,10 +51,14 @@ class TasksController < ApplicationController
     end
   end
 
-  # toggle between completed and uncompleted
+  # toggle between completed and incomplete
   def toggle_completed
     @task = current_user_tasks.find(params[:id])
-    @task.toggle_completed
+    if @task.toggle_completed
+      flash[:success] = '1 task completed'
+    else
+      flash[:info] = '1 task marked incomplete'
+    end
     redirect_back fallback_location: tasks_path
   end
 

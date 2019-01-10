@@ -1,34 +1,27 @@
 <%# local variables: task %>
 
-<%# render a task along with its description, deadline, and tags %>
-<div class="card mb-4 <%= task.title %>">
+<%# display the task in a Bootstrap 'card' entity %>
+<div class="card mb-4">
+  <%# empty/ticked circle, task title, status %>
   <div class="card-header">
-    <%= link_to toggle_completed_task_path(task) do %>
-      <% if task.completed? %>
-        <%= icon 'far', 'check-circle', class: 'action-icon' %>
-      <% else %>
-        <%= icon 'far', 'circle', class: 'action-icon' %>
-      <% end %>
-    <% end %>
+    <%= toggle_complete_icon task %>
     <h5 class="d-inline font-weight-bold"><%= task.title %></h5>
-    <% if task.urgent? %>
-      <%= icon 'fas', 'hourglass-half', class: 'status-icon warning'%>
-    <% elsif task.overdue? %>
-      <%= icon 'far', 'calendar-times', class: 'status-icon warning'%>
-    <% end %>
+    <%= status_icon task %>
   </div>
 
+  <%# description, deadline, tags %>
   <div class="card-body">
     <% if task.description.present? %>
       <p>
-        <%= icon 'fas', 'align-left', class: "details-icon" %>
+        <%= description_icon %>
+        <%# TODO: add collapse effect for excessively long descriptions %>
         <%= truncate task.description, length: 30 %>
       </p>
     <% end %>
 
     <% if task.deadline.present? %>
       <p>
-        <%= icon 'fas', 'calendar-day', class: 'details-icon' %>
+        <%= deadline_icon %>
         <%= utc_to_user_time(task.deadline).friendly_format %>
       </p>
     <% end %>
@@ -37,12 +30,12 @@
       <p>
         <strong>Tags:</strong>
           <% task.tags.each do |tag| %>
-            <em>
-              <%= link_to tag.name, tag_path(tag), class: 'btn btn-sm btn-secondary' %>
-            </em>
+            <%= tag_button(tag) %>
           <% end %>
       </p>
     <% end %>
+
+    <%# edit, delete %>
     <p>
       <%= render 'nav_links', task: task %>
     </p>
