@@ -24,7 +24,7 @@ module ApplicationHelper
     user_id = user_id()
     tag = Tag.create name: 'learning', user_id: user_id
     # create an completed task
-    tag.tasks.create title: 'completed tasks will be archived',
+    tag.tasks.create title: 'completed tasks will be shown here',
                      user_id: user_id,
                      completed: true
     # create an urgent task
@@ -33,7 +33,7 @@ module ApplicationHelper
                      completed: false,
                      deadline: 6.hours.from_now.at_beginning_of_hour
     # create a normal task
-    tag.tasks.create title: "click 'complete' to archive this task",
+    tag.tasks.create title: 'tick the circle to complete this task',
                      user_id: user_id,
                      completed: false
   end

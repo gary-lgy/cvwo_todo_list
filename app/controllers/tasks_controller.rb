@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   # get tasks by category
   def index
-    @archived = current_user_tasks.archived.order(helpers.order)
+    @completed = current_user_tasks.completed.order(helpers.order)
     @ongoing = current_user_tasks.ongoing.order(helpers.order)
     helpers.add_reminder_for_urgent(@ongoing)
     helpers.add_alert_for_overdue(@ongoing)
@@ -12,7 +12,7 @@ class TasksController < ApplicationController
     tag_names = params[:tag_names].split(' ')
     tasks = current_user_tasks.joins(:tags).where('tags.name' => tag_names)
     @ongoing = helpers.process_search_result tasks.ongoing
-    @archived = helpers.process_search_result tasks.archived
+    @completed = helpers.process_search_result tasks.completed
   end
 
   # build new task

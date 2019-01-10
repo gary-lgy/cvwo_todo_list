@@ -5,7 +5,7 @@ class Task < ApplicationRecord
   validates :title, :user_id, presence: true
 
   # scopes for retrieving different categories of tasks
-  scope :archived, -> { where completed: true }
+  scope :completed, -> { where completed: true }
   scope :ongoing, -> { where completed: false }
 
   # toggle between completed and uncompleted
@@ -20,7 +20,7 @@ class Task < ApplicationRecord
   end
 
   # helper methods to query the status of a task
-  def archived?
+  def completed?
     completed
   end
 
@@ -36,7 +36,7 @@ class Task < ApplicationRecord
 
   def status
     if completed
-      'archived'
+      'completed'
     elsif deadline.nil? || deadline > 1.day.from_now
       'normal'
     elsif deadline < Time.now

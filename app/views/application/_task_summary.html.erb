@@ -4,7 +4,7 @@
 <div class="card mb-4 <%= task.title %>">
   <div class="card-header">
     <%= link_to toggle_completed_task_path(task) do %>
-      <% if task.archived? %>
+      <% if task.completed? %>
         <%= icon 'far', 'check-circle', class: 'action-icon' %>
       <% else %>
         <%= icon 'far', 'circle', class: 'action-icon' %>

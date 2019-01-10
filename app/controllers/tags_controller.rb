@@ -9,7 +9,7 @@ class TagsController < ApplicationController
   def show
     @tag = current_user_tags.find_by(name: params[:name])
     @ongoing = @tag.tasks.ongoing.order(helpers.order)
-    @archived = @tag.tasks.archived.order(helpers.order)
+    @completed = @tag.tasks.completed.order(helpers.order)
   end
 
   # destroy a tag (does not destroy associated tasks)

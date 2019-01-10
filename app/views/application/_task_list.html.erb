@@ -1,4 +1,4 @@
-<%# local variables: ongoing, archived %>
+<%# local variables: ongoing, completed %>
 
 <%# list ongoing tasks %>
 <h2>Ongoing</h2>
@@ -8,6 +8,6 @@
   <p>Nothing planned. Have a nice day!</p>
 <% end %>
 
-<%# list archived tasks %>
-<h2>Archived (<%= archived.size %>)</h2>
-<%= render partial: 'task_summary', collection: archived, as: 'task' %>
+<%# list completed tasks %>
+<h2>Completed (<%= completed.size %>)</h2>
+<%= render partial: 'task_summary', collection: completed, as: 'task' %>
