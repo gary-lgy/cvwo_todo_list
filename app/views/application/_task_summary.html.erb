@@ -1,7 +1,7 @@
 <%# local variables: task %>
 
 <%# display the task in a Bootstrap 'card' entity %>
-<div class="card mb-4">
+<div class="card mb-4<%= ' completed' if task.completed? %>">
   <%# empty/ticked circle, task title, status %>
   <div class="card-header">
     <%= toggle_complete_icon task %>

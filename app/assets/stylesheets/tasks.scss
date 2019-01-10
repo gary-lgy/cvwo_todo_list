@@ -18,3 +18,8 @@
     margin-right: 10px;
   }
 }
+
+// strike-through for completed tasks
+.completed .card-header {
+  text-decoration: line-through;
+}
