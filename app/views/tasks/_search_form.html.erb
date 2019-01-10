@@ -1,11 +1,13 @@
 <%# Search box to search tasks by tag names %>
-<%= form_tag search_tasks_path, method: 'get' do %>
-  <%= label_tag :tag_names do %>
-    <strong>Search: </strong>
-  <% end %>
-  <%= text_field_tag :tag_names, nil,
-                     placeholder: 'Enter tag names, separated by space',
-                     size: 30,
-                     autofocus: true %>
-  <%= submit_tag 'Search' %>
-<% end %>
+<form class="form-inline">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text"><%= icon 'fas', 'search' %></div>
+    </div>
+    <%= search_field_tag :tag_names, nil,
+                       placeholder: 'Search tasks by tags...',
+                       id: 'search-tasks-by-tags',
+                       class: 'form-control',
+                       autofocus: true %>
+  </div>
+</form>

@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get '/', to: redirect('/tasks')
   resources :tasks do
     get 'toggle_completed', on: :member
-    get 'search', on: :collection
   end
   resources :tags, param: :name
   get '/welcome', to: 'application#welcome'

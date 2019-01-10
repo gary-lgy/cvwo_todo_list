@@ -1,14 +1,15 @@
-<p>
-  <%= render 'order_links', order_path: tasks_path %>
-</p>
+<div class="container-fluid">
+  <div class="container-fluid">
+    <%= render 'search_form' %>
+  </div>
+  <p>
+    <%= render 'order_links', order_path: tasks_path %>
+  </p>
 
-<%= render partial: 'task_list',
-           locals: {
-               ongoing: @ongoing,
-               completed: @completed
-           } %>
+  <%= render partial: 'task_list',
+             locals: {
+                 ongoing: @ongoing,
+                 completed: @completed
+             } %>
+</div>
 
-<%# fix a search bar to the bottom %>
-<!--<div class="container-fluid fixed-bottom">-->
-  <%#= render 'search_form' %>
-<!--</div>-->

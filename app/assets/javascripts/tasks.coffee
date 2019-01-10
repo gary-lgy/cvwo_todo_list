@@ -12,3 +12,11 @@ $(document).on 'turbolinks:load', ->
       $(this).prev('input[type=hidden]').val('1')
       $(this).closest('div[class=tag]').hide()
       event.preventDefault()
+
+    $('#search-tasks-by-tags').on 'keyup', ->
+      search_names = $(this).val().split(' ')
+      $('#tasks .card').filter ->
+        tag_names = $(this).find('div.tags').text()
+        $(this).toggle search_names.every (search_name) ->
+          tag_names.indexOf(search_name) > -1
+

@@ -7,14 +7,6 @@ class TasksController < ApplicationController
     helpers.add_alert_for_overdue(@ongoing)
   end
 
-  # search for tasks with the given tags
-  def search
-    tag_names = params[:tag_names].split(' ')
-    tasks = current_user_tasks.joins(:tags).where('tags.name' => tag_names)
-    @ongoing = helpers.process_search_result tasks.ongoing
-    @completed = helpers.process_search_result tasks.completed
-  end
-
   # build new task
   def new
     @task = Task.new
