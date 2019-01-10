@@ -15,21 +15,21 @@ module TasksHelper
     tasks.count &:overdue?
   end
 
-  # add a flash reminder message if there are urgent tasks
+  # add a flash warning message if there are urgent tasks
   def add_reminder_for_urgent(tasks)
     urgent_count = count_urgent(tasks)
     if urgent_count.positive?
-      flash.now[:reminder] = "#{urgent_count}
+      flash.now[:warning] = "#{urgent_count}
         #{urgent_count == 1 ? 'task is' : 'tasks are'}
         due within one day."
     end
   end
 
-  # add a flash alert message if there are overdue tasks
+  # add a flash danger message if there are overdue tasks
   def add_alert_for_overdue(tasks)
     overdue_count = count_overdue(tasks)
     if overdue_count.positive?
-      flash.now[:alert] = "#{overdue_count}
+      flash.now[:danger] = "#{overdue_count}
         #{overdue_count == 1 ? 'task is' : 'tasks are'}
         overdue"
     end

@@ -20,6 +20,10 @@ class Task < ApplicationRecord
   end
 
   # helper methods to query the status of a task
+  def archived?
+    completed
+  end
+
   def urgent?
     !completed && !deadline.nil? &&
       deadline < 1.day.from_now && deadline > Time.now

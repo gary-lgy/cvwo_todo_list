@@ -1,38 +1,50 @@
 <%# local variables: task %>
 
 <%# render a task along with its description, deadline, and tags %>
-<%= content_tag :div, class: task.status + '_task' do %>
-  <strong>
-    <%= "#{task_counter + 1}. " %>
-    <%= link_to task.title, task_path(task) %>
-  </strong><br>
-  <p>
-    <%= render 'nav_links', task: task, on_homepage: true %>
-  </p>
-  <ul>
-    <% unless task.description.nil? %>
-      <li>
-        <strong>Description: </strong>
+<div class="card mb-4 <%= task.title %>">
+  <div class="card-header">
+    <%= link_to toggle_completed_task_path(task) do %>
+      <% if task.archived? %>
+        <%= icon 'far', 'check-circle', class: 'action-icon' %>
+      <% else %>
+        <%= icon 'far', 'circle', class: 'action-icon' %>
+      <% end %>
+    <% end %>
+    <h5 class="d-inline font-weight-bold"><%= task.title %></h5>
+    <% if task.urgent? %>
+      <%= icon 'fas', 'hourglass-half', class: 'status-icon warning'%>
+    <% elsif task.overdue? %>
+      <%= icon 'far', 'calendar-times', class: 'status-icon warning'%>
+    <% end %>
+  </div>
+
+  <div class="card-body">
+    <% if task.description.present? %>
+      <p>
+        <%= icon 'fas', 'align-left', class: "details-icon" %>
         <%= truncate task.description, length: 30 %>
-      </li>
+      </p>
     <% end %>
 
     <% if task.deadline.present? %>
-      <li>
-        <strong>Deadline: </strong>
+      <p>
+        <%= icon 'fas', 'calendar-day', class: 'details-icon' %>
         <%= utc_to_user_time(task.deadline).friendly_format %>
-      </li>
+      </p>
     <% end %>
 
     <% if task.tags.any? %>
-      <li>
+      <p>
         <strong>Tags:</strong>
-        <em>
           <% task.tags.each do |tag| %>
-            <%= link_to tag.name, tag_path(tag) %>
+            <em>
+              <%= link_to tag.name, tag_path(tag), class: 'btn btn-sm btn-secondary' %>
+            </em>
           <% end %>
-        </em>
-      </li>
+      </p>
     <% end %>
-  </ul>
-<% end %>
+    <p>
+      <%= render 'nav_links', task: task %>
+    </p>
+  </div>
+</div>

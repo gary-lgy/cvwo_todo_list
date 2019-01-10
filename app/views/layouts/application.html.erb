@@ -10,10 +10,15 @@
   </head>
 
   <body>
-    <%# display reminder, alert and error messages %>
-    <% flash.each do |cat, msg| %>
-      <%= content_tag :div, msg, class: cat %>
-    <% end %>
-    <%= yield %>
+  <div class="container-fluid">
+      <%# display flash messages %>
+      <% flash.each do |cat, msg| %>
+        <%= content_tag :div, class: 'alert alert-' + cat + ' fade show alert-dismissible mt-3' do %>
+        <button class="close" data-dismiss="alert">&times;</button>
+          <%= msg %>
+        <% end %>
+      <% end %>
+      <%= yield %>
+  </div>
   </body>
 </html>

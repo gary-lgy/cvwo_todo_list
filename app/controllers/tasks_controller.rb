@@ -7,11 +7,6 @@ class TasksController < ApplicationController
     helpers.add_alert_for_overdue(@ongoing)
   end
 
-  # show details of a task
-  def show
-    @task = current_user_tasks.find(params[:id])
-  end
-
   # search for tasks with the given tags
   def search
     tag_names = params[:tag_names].split(' ')
@@ -30,10 +25,10 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save_new
       helpers.add_or_remove_tags(@task)
-      flash[:notice] = 'Task saved successfully.'
-      redirect_to @task
+      flash[:success] = 'Task saved successfully.'
+      redirect_to tasks_path
     else
-      flash.now[:error] = @task.errors.full_messages.join("\n")
+      flash.now[:danger] = @task.errors.full_messages.join("\n")
       render 'new'
     end
   end
@@ -48,10 +43,10 @@ class TasksController < ApplicationController
     @task = current_user_tasks.find(params[:id])
     if @task.update(task_params)
       helpers.add_or_remove_tags(@task)
-      flash[:notice] = 'Task updated successfully'
-      redirect_to @task
+      flash[:success] = 'Task updated successfully'
+      redirect_to tasks_path
     else
-      flash.now[:error] = @task.errors.full_messages.join("\n")
+      flash.now[:danger] = @task.errors.full_messages.join("\n")
       render 'edit'
     end
   end
@@ -67,7 +62,7 @@ class TasksController < ApplicationController
   def destroy
     @task = current_user_tasks.find(params[:id])
     @task.destroy
-    flash[:notice] = 'Task deleted successfully'
+    flash[:info] = 'Task deleted successfully'
     redirect_to tasks_path
   end
 

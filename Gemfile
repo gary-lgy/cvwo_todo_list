@@ -39,6 +39,9 @@ gem 'jquery-rails'
 # use Bootstrap for styling
 gem 'bootstrap'
 
+# use Font Awesome for icons
+gem 'font-awesome-sass'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
