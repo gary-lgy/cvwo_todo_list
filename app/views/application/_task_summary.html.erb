@@ -28,9 +28,11 @@
     <% if task.tags.any? %>
       <p>
         <%= tag_icon %>
-        <% task.tags.each do |tag| %>
-          <%= tag_button(tag) %>
-        <% end %>
+        <div class="tags">
+          <% task.tags.each do |tag| %>
+            <%= tag_button(tag) %>
+          <% end %>
+        </div>
       </p>
     <% end %>
   </div>
