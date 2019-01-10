@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$icon-color: #007bff;
+$alternative-icon-color: #88d317;
+
 // all Font Awesome icons
 [class^="fa-"], [class*=" fa-"] {
   &.status-icon {
@@ -14,8 +17,14 @@
 
   &.action-icon, &.details-icon {
     // action icons and detail icons
-    color: #007bff;
+    color: $icon-color;
     margin-right: 10px;
+  }
+
+  &.nav-icon {
+    color: $icon-color;
+    margin: 0 10px;
+    font-size: 30px;
   }
 }
 

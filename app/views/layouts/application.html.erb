@@ -4,21 +4,44 @@
     <title>To-do List</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+
+  <%# a navigational bar to use throughout the app %>
+  <nav class="navbar navbar-expand navbar-dark sticky-top" style="background-color: #6c757d;">
+    <%= link_to tasks_path, class: 'navbar-brand' do %>
+      <h2 class="font-weight-bold">To-Do List</h2>
+    <% end %>
+    <div class="navbar-nav">
+      <%= link_to 'Tasks', tasks_path, class: 'nav-link nav-item' %>
+      <%= link_to 'Tags', tags_path, class: 'nav-link nav-item' %>
+      <%= link_to new_task_path, class: 'nav-link nav-item' do %>
+        <%= icon 'fas', 'plus-circle', class: 'nav-icon' %>
+      <% end %>
+    </div>
+  </nav>
+
+  <%# display flash messages %>
   <div class="container-fluid">
-      <%# display flash messages %>
       <% flash.each do |cat, msg| %>
-        <%= content_tag :div, class: 'alert alert-' + cat + ' fade show alert-dismissible mt-3' do %>
+        <%= content_tag :div,
+                        class: 'alert alert-' + cat + ' fade show '\
+                               'alert-dismissible mt-3 mx-auto' do %>
         <button class="close" data-dismiss="alert">&times;</button>
           <%= msg %>
         <% end %>
       <% end %>
-      <%= yield %>
+  </div>
+
+  <%# rest of page content %>
+  <div class="container-fluid">
+    <%= yield %>
   </div>
   </body>
 </html>
