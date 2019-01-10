@@ -14,8 +14,7 @@
     <% if task.description.present? %>
       <p>
         <%= description_icon %>
-        <%# TODO: add collapse effect for excessively long descriptions %>
-        <%= truncate task.description, length: 30 %>
+        <%= task.description %>
       </p>
     <% end %>
 
