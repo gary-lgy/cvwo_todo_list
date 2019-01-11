@@ -1,14 +1,20 @@
 <%# local variables: task %>
 
 <%# display the task in a Bootstrap 'card' entity %>
-<div class="card mb-4<%= ' completed' if task.completed? %>">
+<%= content_tag :div,
+                class: 'card mb-4' +
+                  (task.completed? ? ' completed' : ''),
+                data: {
+                  'deadline' => task.deadline.to_i,
+                  'time-updated' => task.updated_at.to_i
+                } do %>
   <%# empty/ticked circle, task title, status %>
   <div class="card-header row">
     <div class="col-1">
       <%= toggle_complete_icon task %>
     </div>
     <div class="col-11">
-      <h5 class="d-inline font-weight-bold"><%= task.title %></h5>
+      <h5 class="task-title d-inline font-weight-bold"><%= task.title %></h5>
       <%= status_icon task %>
     </div>
   </div>
@@ -16,16 +22,20 @@
   <%# description, deadline, tags %>
   <div class="card-body">
     <% if task.description.present? %>
-      <p>
+      <div>
         <%= description_icon %>
-        <%= task.description %>
-      </p>
+        <div class="task-description d-inline">
+          <%= task.description %>
+        </div>
+      </div>
     <% end %>
 
     <% if task.deadline.present? %>
-      <p>
+      <div>
         <%= deadline_icon %>
-        <%= utc_to_user_time(task.deadline).friendly_format %>
+        <div class="task-deadline d-inline">
+          <%= utc_to_user_time(task.deadline).friendly_format %>
+        </div>
         <% if  task.overdue? %>
           <span class="text-danger">
             <%= ' ' + time_ago_in_words(task.deadline) + ' ago' %>
@@ -35,13 +45,13 @@
             <%= ' ' + distance_of_time_in_words_to_now(task.deadline) + ' later'%>
           </span>
         <% end %>
-      </p>
+      </div>
     <% end %>
 
     <% if task.tags.any? %>
       <div>
         <%= tag_icon %>
-        <div id="tags" class="d-inline">
+        <div class="task-tags d-inline">
           <% task.tags.each do |tag| %>
             <%= tag_button(tag) %>
           <% end %>
@@ -54,4 +64,4 @@
   <div class="card-footer">
     <%= render 'nav_links', task: task %>
   </div>
-</div>
+<% end %>

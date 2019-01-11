@@ -1,13 +1,30 @@
-<%# local variables: order_path %>
 <%# links to give the user the choice to order tasks by time
-    created, deadline and title %>
+    updated, deadline and title %>
 <strong>Order by:</strong>
-<%= link_to_if cookies[:order].nil? || cookies[:order].match(/[23]/),
-               'Time created',
-               append_query_string_to_url(order_path, 'order', '1') %> |
-<%= link_to_unless cookies[:order] == '2',
-                   'Deadline',
-                   append_query_string_to_url(order_path, 'order', '2') %> |
-<%= link_to_unless cookies[:order] == '3',
-                   'Title',
-                   append_query_string_to_url(order_path, 'order', '3') %>
+<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+    <%= content_tag :label,
+                    id: 'sort-tasks-by-time-updated',
+                    class: 'btn btn-secondary' +
+                      (cookies[:order] == '1' ? ' active' : ''),
+                    title: 'Order by last modified time',
+                    data: {
+                        toggle: 'tooltip',
+                    } do %>
+      <input type="radio" autocomplete="off">
+      Default
+    <% end %>
+  <%= content_tag :label,
+                  id: 'sort-tasks-by-deadline',
+                  class: 'btn btn-secondary' +
+                      (cookies[:order] == '2' ? ' active' : '') do %>
+    <input type="radio">
+    Deadline
+  <% end %>
+  <%= content_tag :label,
+                  id: 'sort-tasks-by-title',
+                  class: 'btn btn-secondary' +
+                      (cookies[:order] == '3' ? ' active' : '') do %>
+    <input type="radio">
+    Title
+  <% end %>
+</div>
