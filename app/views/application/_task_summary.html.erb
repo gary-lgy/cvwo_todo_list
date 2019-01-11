@@ -26,6 +26,15 @@
       <p>
         <%= deadline_icon %>
         <%= utc_to_user_time(task.deadline).friendly_format %>
+        <% if  task.overdue? %>
+          <span class="text-danger">
+            <%= ' ' + time_ago_in_words(task.deadline) + ' ago' %>
+          </span>
+        <% elsif task.urgent? %>
+          <span class="text-danger">
+            <%= ' ' + distance_of_time_in_words_to_now(task.deadline) + ' later'%>
+          </span>
+        <% end %>
       </p>
     <% end %>
 
