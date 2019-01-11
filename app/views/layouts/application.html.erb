@@ -28,7 +28,7 @@
   </nav>
 
   <%# display flash messages %>
-  <div class="container-fluid">
+  <div class="container-fluid" id="alerts'">
       <% flash.each do |cat, msg| %>
         <%= content_tag :div,
                         class: 'alert alert-' + cat + ' fade show '\
@@ -40,7 +40,7 @@
   </div>
 
   <%# rest of page content %>
-  <div class="container-fluid">
+  <div class="container-fluid" id="content">
     <%= yield %>
   </div>
   </body>

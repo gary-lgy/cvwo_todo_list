@@ -1,14 +1,12 @@
-<div class="container-fluid">
-    <%= render 'search_form' %>
+<%= render 'search_form' %>
 
-  <div id="order-links">
-    <%= render 'order_links', order_path: tasks_path %>
-  </div>
-
-  <%= render partial: 'task_list',
-             locals: {
-                 ongoing: @ongoing,
-                 completed: @completed
-             } %>
+<div id="order-links">
+  <%= render 'order_links', order_path: tasks_path %>
 </div>
+
+<%= render partial: 'task_list',
+           locals: {
+               ongoing: @ongoing,
+               completed: @completed
+           } %>
 

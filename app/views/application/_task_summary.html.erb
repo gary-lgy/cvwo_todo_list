@@ -3,10 +3,14 @@
 <%# display the task in a Bootstrap 'card' entity %>
 <div class="card mb-4<%= ' completed' if task.completed? %>">
   <%# empty/ticked circle, task title, status %>
-  <div class="card-header">
-    <%= toggle_complete_icon task %>
-    <h5 class="d-inline font-weight-bold"><%= task.title %></h5>
-    <%= status_icon task %>
+  <div class="card-header row">
+    <div class="col-1">
+      <%= toggle_complete_icon task %>
+    </div>
+    <div class="col-11">
+      <h5 class="d-inline font-weight-bold"><%= task.title %></h5>
+      <%= status_icon task %>
+    </div>
   </div>
 
   <%# description, deadline, tags %>
@@ -26,14 +30,14 @@
     <% end %>
 
     <% if task.tags.any? %>
-      <p>
+      <div>
         <%= tag_icon %>
-        <div class="tags">
+        <div id="tags" class="d-inline">
           <% task.tags.each do |tag| %>
             <%= tag_button(tag) %>
           <% end %>
         </div>
-      </p>
+      </div>
     <% end %>
   </div>
 
