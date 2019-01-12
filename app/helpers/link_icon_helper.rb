@@ -78,7 +78,7 @@ module LinkIconHelper
   def tag_button(tag)
     link_to tag.name,
             tag_path(tag),
-            class: 'btn btn-sm btn-secondary font-italic'
+            class: 'tag badge font-italic'
   end
 
   # generate a link to edit a task, presented on an icon

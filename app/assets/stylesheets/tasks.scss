@@ -3,27 +3,40 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $icon-color: #007bff;
-$alternative-icon-color: #88d317;
+
+$tag-bg-color: #D7DD35;
+$tag-bg-color-hover: #a3a926;
+$tag-text-color: #000000;
 
 // all Font Awesome icons
 [class^="fa-"], [class*=" fa-"] {
-  &.status-icon {
-    &.warning {
-      // status icons that are warnings
-      color: red;
-      margin-left: 10px;
-    }
+  // status icons that are warnings
+  &.status-icon.warning {
+    color: red;
+    margin-left: 10px;
   }
 
+  // action icons and details icons
   &.action-icon, &.details-icon {
-    // action icons and detail icons
     color: $icon-color;
     margin-right: 10px;
   }
-
 }
 
 // strike-through for completed tasks
-.completed .card-header {
-  text-decoration: line-through;
+.completed {
+  .task-title, .task-description {
+    text-decoration: line-through;
+  }
+}
+
+.tag {
+  &:hover {
+    color: $tag-text-color;
+    text-decoration: none;
+    background-color: $tag-bg-color-hover !important;
+  }
+  color: $tag-text-color;
+  text-decoration: none;
+  background-color: $tag-bg-color !important;
 }
