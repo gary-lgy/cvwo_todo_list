@@ -26,15 +26,18 @@ $('.tasks.index').ready ->
   # search for tasks by tags
   $('#search-tasks-by-tags').on 'keyup', ->
     search_names = $(this).val().split(' ')
-    $('#tasks .card').filter ->
-      tag_names = $(this).find('div.task-tags').text()
-      $(this).toggle search_names.every (search_name) ->
-        tag_names.indexOf(search_name) > -1
+    $('.task').each ->
+      tag_names = $(this).find('.task-tags').text()
+      if search_names.every((search_name) ->
+        tag_names.includes(search_name))
+        $(this).collapse 'show'
+      else
+        $(this).collapse 'hide'
 
   # generic function to sort all tasks using a comparator
   sort_tasks_with = (comp_func) ->
-    $('#ongoing-tasks .card').sort(comp_func).appendTo('#ongoing-tasks')
-    $('#completed-tasks .card').sort(comp_func).appendTo('#completed-tasks')
+    $('#ongoing-tasks .task').sort(comp_func).appendTo('#ongoing-tasks')
+    $('#completed-tasks .task').sort(comp_func).appendTo('#completed-tasks')
 
   # this is the default order
   # sort tasks by time updated (newest on top)

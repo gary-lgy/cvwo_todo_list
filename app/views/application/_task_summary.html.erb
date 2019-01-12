@@ -2,7 +2,7 @@
 
 <%# display the task in a Bootstrap 'card' entity %>
 <%= content_tag :div,
-                class: 'card mb-4' +
+                class: 'card mb-4 collapse show task' +
                   (task.completed? ? ' completed' : ''),
                 data: {
                   'deadline' => task.deadline.to_i,
