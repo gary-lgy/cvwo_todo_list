@@ -76,7 +76,7 @@ module LinkIconHelper
   # generate a link to a tag, presented on a button
   def tag_button(tag)
     link_to tag.name,
-            tag_path(tag),
+            '#',
             class: 'tag badge font-italic'
   end
 
