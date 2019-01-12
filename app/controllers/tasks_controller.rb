@@ -3,8 +3,6 @@ class TasksController < ApplicationController
   def index
     @completed = current_user_tasks.completed
     @ongoing = current_user_tasks.ongoing
-    helpers.add_reminder_for_urgent(@ongoing)
-    helpers.add_alert_for_overdue(@ongoing)
   end
 
   # build new task

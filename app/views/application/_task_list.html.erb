@@ -2,7 +2,12 @@
 
 <div id="tasks">
   <%# list ongoing tasks %>
-  <h2>Ongoing</h2>
+  <div>
+    <h2 class="d-inline">Ongoing</h2>
+    <%= reminder_for_urgent_tasks ongoing %>
+    <%= alert_for_overdue_tasks ongoing %>
+  </div>
+
   <% if ongoing.any? %>
     <div id="ongoing-tasks">
       <%= render partial: 'task_summary', collection: ongoing, as: 'task' %>

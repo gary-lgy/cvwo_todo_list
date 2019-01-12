@@ -37,13 +37,12 @@ module LinkIconHelper
   #########################################
   #---------- Icon-only helpers ----------#
   #########################################
-  # display an icon to indicate if the task if overdue or urgent
-  def status_icon(task)
-    if task.urgent?
-      icon 'fas', 'hourglass-half', class: 'status-icon warning'
-    elsif task.overdue?
-      icon 'far', 'calendar-times', class: 'status-icon warning'
-    end
+  def urgent_icon
+    icon 'fas', 'hourglass-half', class: 'status-icon-reminder'
+  end
+
+  def overdue_icon
+    icon 'far', 'calendar-times', class: 'status-icon-warning'
   end
 
   def description_icon

@@ -18,12 +18,10 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-$tag-color: #6c757d;
-
 .alert {
   width: 75%;
 }
 
 #main-nav {
-  background-color: $tag-color;
+  background-color: var(--secondary);
 }

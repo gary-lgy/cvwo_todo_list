@@ -15,7 +15,11 @@
     </div>
     <div class="col-11">
       <h5 class="task-title d-inline font-weight-bold"><%= task.title %></h5>
-      <%= status_icon task %>
+      <% if task.urgent? %>
+        <%= urgent_icon %>
+      <% else task.overdue? %>
+        <%= overdue_icon %>
+      <% end %>
     </div>
   </div>
 
@@ -41,7 +45,7 @@
             <%= ' ' + time_ago_in_words(task.deadline) + ' ago' %>
           </span>
         <% elsif task.urgent? %>
-          <span class="text-danger">
+          <span style="color: orange;">
             <%= ' ' + distance_of_time_in_words_to_now(task.deadline) + ' later'%>
           </span>
         <% end %>
