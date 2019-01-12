@@ -9,17 +9,19 @@
                   'time-updated' => task.updated_at.to_i
                 } do %>
   <%# empty/ticked circle, task title, status %>
-  <div class="card-header row">
-    <div class="col-1">
-      <%= toggle_complete_icon task %>
-    </div>
-    <div class="col-11">
-      <h5 class="task-title d-inline font-weight-bold"><%= task.title %></h5>
-      <% if task.urgent? %>
-        <%= urgent_icon %>
-      <% else task.overdue? %>
-        <%= overdue_icon %>
-      <% end %>
+  <div class="card-header">
+    <div class="row">
+      <div class="col-1">
+        <%= toggle_complete_icon task %>
+      </div>
+      <div class="col-11">
+        <h5 class="task-title d-inline font-weight-bold"><%= task.title %></h5>
+        <% if task.urgent? %>
+          <%= urgent_icon %>
+        <% else task.overdue? %>
+          <%= overdue_icon %>
+        <% end %>
+      </div>
     </div>
   </div>
 
