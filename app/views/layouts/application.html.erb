@@ -15,7 +15,7 @@
 
   <%# a navigational bar to use throughout the app %>
   <nav class="navbar navbar-expand navbar-dark sticky-top mb-3" id="main-nav">
-    <%= link_to tasks_path, class: 'navbar-brand' do %>
+    <%= link_to tasks_path, class: 'navbar-brand', 'data-turbolinks' => false do %>
       <h2 class="font-weight-bold">
         <%= icon 'fas', 'check-square' %>
         To-Do List
