@@ -22,18 +22,21 @@ module ApplicationHelper
   # create initial tasks and tags for a new user
   def initial_setup
     user_id = user_id()
-    tag = Tag.create name: 'learning', user_id: user_id
-    # create an completed task
-    tag.tasks.create title: 'completed tasks will be shown here',
+    tag = Tag.create! name: 'first tag', user_id: user_id
+    # create a completed task
+    tag.tasks.create title: 'Completed tasks will be shown here',
                      user_id: user_id,
                      completed: true
     # create an urgent task
-    tag.tasks.create title: 'tasks due in one day will be marked urgent',
+    tag.tasks.create title: 'Tasks due in one day will be marked urgent',
+                     description: 'This task is due today. '\
+                                  'Tick the circle on the left to complete it.',
                      user_id: user_id,
                      completed: false,
                      deadline: 6.hours.from_now.at_beginning_of_hour
     # create a normal task
-    tag.tasks.create title: 'tick the circle to complete this task',
+    tag.tasks.create title: 'Make using To-Do List your habit!',
+                     description: 'To-Do List is awesome! :)',
                      user_id: user_id,
                      completed: false
   end

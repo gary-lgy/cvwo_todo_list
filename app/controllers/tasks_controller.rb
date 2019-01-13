@@ -1,6 +1,9 @@
 class TasksController < ApplicationController
   # get tasks by category
   def index
+    if params[:new_user] == '1'
+      flash.now[:primary] = 'We have set up some sample tasks for you. Take a look below.'
+    end
     @completed = current_user_tasks.completed
     @ongoing = current_user_tasks.ongoing
   end
@@ -49,7 +52,7 @@ class TasksController < ApplicationController
     else
       flash[:info] = '1 task marked incomplete'
     end
-    redirect_back fallback_location: tasks_path
+    redirect_to tasks_path
   end
 
   # delete a task

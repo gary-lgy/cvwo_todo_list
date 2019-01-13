@@ -13,7 +13,11 @@
       <%= render partial: 'task_summary', collection: ongoing, as: 'task' %>
     </div>
   <% else %>
-    <p>Nothing planned. Have a nice day!</p>
+    <%= image_tag 'no_tasks_man_relaxing.jpg',
+                  class: 'img-fluid w-50 d-block mx-auto' %>
+    <p class="text-center font-weight-bold" style="text-decoration: underline;">Nicely done!</p>
+    <p class="text-center">You've finished all your tasks!</p>
+    <p class="text-center">Take a second to recharge</p>
   <% end %>
 
   <%# list completed tasks %>

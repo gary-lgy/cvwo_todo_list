@@ -1,4 +1,9 @@
-<h1>Welcome to To-do List!</h1>
-<%= link_to tasks_path do %>
-  <h3>Start using To-do List</h3>
+<h1 id="welcome-heading">Welcome to To-Do List!</h1>
+<%= image_tag 'welcome_screen_girl_working.png',
+              class: 'img-fluid w-75 d-block mx-auto' %>
+<%= link_to tasks_path(new_user: '1') do %>
+  <div class="btn btn-lg btn-block btn-primary mx-auto">
+    <h5>Start using To-Do List</h5>
+    <h5>(and being awesome!)</h5>
+  </div>
 <% end %>
