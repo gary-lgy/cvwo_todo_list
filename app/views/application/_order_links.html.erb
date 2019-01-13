@@ -4,8 +4,7 @@
 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
     <%= content_tag :label,
                     id: 'sort-tasks-by-time-updated',
-                    class: 'btn btn-secondary' +
-                      (cookies[:order] == '1' ? ' active' : ''),
+                    class: 'btn btn-secondary',
                     title: 'Order by last modified time',
                     data: {
                         toggle: 'tooltip',
@@ -15,15 +14,13 @@
     <% end %>
   <%= content_tag :label,
                   id: 'sort-tasks-by-deadline',
-                  class: 'btn btn-secondary' +
-                      (cookies[:order] == '2' ? ' active' : '') do %>
+                  class: 'btn btn-secondary' do %>
     <input type="radio">
     Deadline
   <% end %>
   <%= content_tag :label,
                   id: 'sort-tasks-by-title',
-                  class: 'btn btn-secondary' +
-                      (cookies[:order] == '3' ? ' active' : '') do %>
+                  class: 'btn btn-secondary' do %>
     <input type="radio">
     Title
   <% end %>

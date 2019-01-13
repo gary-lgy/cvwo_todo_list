@@ -36,24 +36,30 @@ $(document).on 'turbolinks:load', ->
 
     # sort tasks on page load, based on last used order
     # default order is by time updated
-    switch Cookies.get('order')
-      when '2' then sort_tasks_by_deadline()
-      when '3' then sort_tasks_by_title()
-      else sort_tasks_by_time_updated()
+    switch localStorage.getItem 'order'
+      when '2'
+        $('#sort-tasks-by-deadline').addClass('active')
+        sort_tasks_by_deadline()
+      when '3'
+        $('#sort-tasks-by-title').addClass('active')
+        sort_tasks_by_title()
+      else
+        $('#sort-tasks-by-time-updated').addClass('active')
+        sort_tasks_by_time_updated()
 
     # fire events when user clicks sorting buttons
     $(document).on 'click', '#sort-tasks-by-time-updated', (event) ->
-      Cookies.set 'order', '1'
+      localStorage.setItem 'order', '1'
       sort_tasks_by_time_updated()
       event.preventDefault()
 
     $(document).on 'click', '#sort-tasks-by-deadline', (event) ->
-      Cookies.set 'order', '2'
+      localStorage.setItem 'order', '2'
       sort_tasks_by_deadline()
       event.preventDefault()
 
     $(document).on 'click', '#sort-tasks-by-title', (event) ->
-      Cookies.set 'order', '3'
+      localStorage.setItem 'order', '3'
       sort_tasks_by_title()
       event.preventDefault()
 
