@@ -61,7 +61,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-################ Gems added during development ################
+################ Gems added ################
 # use jquery-rails for jquery
 gem 'jquery-rails'
 
@@ -70,6 +70,9 @@ gem 'bootstrap'
 
 # use Font Awesome for icons
 gem 'font-awesome-sass'
+
+# use Moment.js for date time processing and datetimepicker
+gem 'momentjs-rails'
 
 # use Bootstrap 4 Datetime Picker Rails for datetime picker widget
 gem 'bootstrap4-datetime-picker-rails'
