@@ -28,36 +28,46 @@
   <%# description, deadline, tags %>
   <div class="card-body">
     <% if task.description.present? %>
-      <div>
-        <%= description_icon %>
-        <div class="task-description d-inline">
+      <div class="row">
+        <div class="col-1">
+          <%= description_icon %>
+        </div>
+        <div class="task-description col-11">
           <%= task.description %>
         </div>
       </div>
     <% end %>
 
     <% if task.deadline.present? %>
-      <div>
-        <%= deadline_icon %>
-        <div class="task-deadline task-deadline-utc d-inline">
-          <%= task.deadline.iso8601 %>
+      <div class="row">
+        <div class="col-1">
+          <%= deadline_icon %>
         </div>
-        <% if task.overdue? %>
-          <span class="text-danger">
-            <%= ' ' + time_ago_in_words(task.deadline) + ' ago' %>
-          </span>
-        <% elsif task.urgent? %>
-          <span style="color: orange;">
-            <%= ' ' + distance_of_time_in_words_to_now(task.deadline) + ' later'%>
-          </span>
-        <% end %>
+        <div class="col-11">
+          <div class="task-deadline task-deadline-utc">
+            <%= task.deadline.iso8601 %>
+          </div>
+          <div>
+            <% if task.overdue? %>
+              <span class="text-danger">
+                <%= ' ' + time_ago_in_words(task.deadline) + ' ago' %>
+              </span>
+            <% elsif task.urgent? %>
+              <span style="color: orange;">
+                <%= ' ' + distance_of_time_in_words_to_now(task.deadline) + ' later'%>
+              </span>
+            <% end %>
+          </div>
+        </div>
       </div>
     <% end %>
 
     <% if task.tags.any? %>
-      <div>
-        <%= tag_icon %>
-        <div class="task-tags d-inline">
+      <div class="row">
+        <div class="col-1">
+          <%= tag_icon %>
+        </div>
+        <div class="task-tags col-11">
           <% task.tags.each do |tag| %>
             <%= tag_with_link(tag) %>
           <% end %>

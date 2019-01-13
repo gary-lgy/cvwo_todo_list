@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  # last TODO: remove redundant files & functions, and we'll be ready for final deployment
   # get tasks by category
   def index
     if params[:new_user] == '1'
