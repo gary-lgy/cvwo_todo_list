@@ -1,14 +1,15 @@
 # function for creating task and editing task
 $(document).on 'turbolinks:load', ->
-  $('.tasks.edit, .tasks.new').ready ->
+  # load these functions only for new and edit pages
+  if $('body.tasks.edit, body.tasks.new').length
     # add a tag on the fly
-    $('.add-tag-btn').click (event) ->
+    $(document).on 'click', '.add-tag-btn', (event) ->
       $(this).before($(this).data('fields'))
       $(this).prev().find('#task_tags__name').focus()
       event.preventDefault()
 
     # remove a tag on the fly
-    $('.remove-tag-btn').click (event) ->
+    $(document).on 'click', '.remove-tag-btn', (event) ->
       status = $(this).parent().find('#task_tags__status')
       if status.val() == 'existing'
         status.val('remove')
@@ -32,7 +33,14 @@ $(document).on 'turbolinks:load', ->
     ddl_selector.datetimepicker(options)
 
     # add deadline to a input field, if deadline is provided by user
-    $('input[type=submit]').click (event) ->
+    $(document).on 'click', 'input[type=submit]', (event) ->
       if ddl_selector.datetimepicker('date') != null
         ddl_seconds = ddl_selector.datetimepicker('date').unix()
         $('form').append('<input type="text" name="task[deadline]" value=' + ddl_seconds + ' style="display: none;">')
+
+$(document).on 'turbolinks:before-cache', ->
+  if $('body.tasks.edit, body.tasks.new').length
+    # unbind event handlers before turbolinks caches the page
+    $(document).off 'click', '.add-tag-btn'
+    $(document).off 'click', '.remove-tag-btn'
+    $(document).off 'click', 'input[type=submit]'
