@@ -39,12 +39,4 @@ module TasksHelper
     end
   end
 
-  # convert deadline as specified in params to UTC
-  def task_params_in_utc(task_params)
-    deadline = extract_time_from_params(task_params)
-    { title: task_params[:title],
-      description: task_params[:description],
-      deadline: deadline }
-  end
-
 end

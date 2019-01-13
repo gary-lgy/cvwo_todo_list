@@ -4,5 +4,6 @@
 
 # TODO: move all functions under turbolinks:load such that they will be loaded on page reload
 $(document).on 'turbolinks:load', ->
-  # find timezone offset on every page load
-  Cookies.set 'timezone_offset', new Date().getTimezoneOffset()
+  # convert utc time to local time
+  $('.task-deadline-utc').each ->
+    $(this).text(moment($(this).text().trim()).format("ddd, D MMM YYYY, kk:mm"))

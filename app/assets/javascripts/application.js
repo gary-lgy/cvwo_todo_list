@@ -16,7 +16,6 @@
 //= require bootstrap
 //= require activestorage
 //= require turbolinks
-//= require js_cookie
 //= require moment
 //= require moment-timezone-with-data
 //= require tempusdominus-bootstrap-4

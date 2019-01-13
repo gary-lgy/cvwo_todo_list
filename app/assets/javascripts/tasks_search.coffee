@@ -1,3 +1,4 @@
+# TODO: make searching case-insensitive
 # functions used to search for tasks
 $(document).on 'turbolinks:load', ->
   # only load on tasks index page

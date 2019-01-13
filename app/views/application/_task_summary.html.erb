@@ -39,8 +39,8 @@
     <% if task.deadline.present? %>
       <div>
         <%= deadline_icon %>
-        <div class="task-deadline d-inline">
-          <%= utc_to_user_time(task.deadline).friendly_format %>
+        <div class="task-deadline task-deadline-utc d-inline">
+          <%= task.deadline.iso8601 %>
         </div>
         <% if task.overdue? %>
           <span class="text-danger">

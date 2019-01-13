@@ -1,3 +1,4 @@
+# TODO: make sorting case insensitive
 $(document).on 'turbolinks:load', ->
   # only load on tasks index page
   if $('body.tasks.index').length
