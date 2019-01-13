@@ -1,43 +1,66 @@
+<%# local variables: task %>
 <%# form to build a new task or edit and existing task %>
-<%= form_with model: @task, local: true do |f| %>
-  <fieldset>
-    <legend>Details</legend>
-    <p>
-      <%= f.label :title, 'Title: ' %>
-      <%= f.text_field :title, required: true, autocomplete: :off %><br>
-    </p>
-    <p>
-      <%= f.label :description, 'Description: ' %>
-      <%= f.text_area :description, size: '30x5', maxlength: 250 %><br>
-    </p>
-    <p>
-      <%= f.label :deadline, 'Deadline: ' %>
-      <%= f.datetime_select :deadline,
-            selected: utc_to_user_time(@task.deadline || Time.zone.now) %><br>
-    </p>
-    <%# display each tag and give user the option to remove them %>
-    Tags:
-    <p>
-      <% @task.tags.each do |tag| %>
-        <div class="tag">
+<%= form_with model: task, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :title, 'Title: ' %>
+    <%= f.text_field :title, class: 'form-control',
+                     required: true, autocomplete: :off, autofocus: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, 'Description (optional): ' %>
+    <%= f.text_area :description, class: 'form-control',
+                    size: '25x3', maxlength: 250 %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :deadline, 'Deadline (optional): ' %>
+    <div class="row">
+      <div class="col-sm-6">
+          <%= content_tag :div,
+                          class: 'input-group date',
+                          id: 'deadline-selector',
+                          data: {
+                              target_input: 'nearest',
+                              current: (task.deadline.nil? ? nil : task.deadline.iso8601)
+                          } do %>
+            <input type="text" class="form-control datetimepicker-input" data-target="#deadline-selector">
+            <div class="input-group-append" data-target="#deadline-selector" data-toggle="datetimepicker">
+              <div class="input-group-text"><%= icon 'fas', 'calendar-alt' %></div>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%# display each tag and give user the option to remove them %>
+  <div class="form-group" id="tags">
+    <%= f.label :tags, 'Tags: '%>
+    <% @task.tags.each do |tag| %>
+      <div class="tag-fields">
+        <div class="tag badge font-italic">
           <%= tag.name %>
-          <%= hidden_field_tag 'task[tags][][name]', tag.name %>
-          <%= hidden_field_tag 'task[tags][][remove]' %>
-          <%# JavaScript link to mark the 'remove'
-              field and hide the div %>
-          <%= link_to 'Remove', '#', id: 'remove_tag' %>
-          <br>
         </div>
-      <% end %>
-    </p>
+        <%= hidden_field_tag 'task[tags][][name]', tag.name %>
+        <%= hidden_field_tag 'task[tags][][status]', 'existing' %>
+        <%# JavaScript link to mark the 'remove'
+            field and hide the div %>
+        <a href="#" class="remove-tag-btn">
+          <%= icon 'far', 'trash-alt' %>
+        </a>
+      </div>
+    <% end %>
     <%# JavaScript link to add a new tag %>
-    <p>
+    <div>
       <%= link_to_add_tag %>
-    </p>
-    <p>
-      <%= f.submit %>
-    </p>
-  </fieldset>
+    </div>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
 <% end %>
 
-<%= link_to_tasks_path %>
+<div class="mt-5">
+  <%= link_to_tasks_path %>
+</div>

@@ -9,14 +9,19 @@ module TagsHelper
   def add_or_remove_tags(task)
     if params[:task][:tags].respond_to? 'each'
       params[:task][:tags].each do |tag|
-        if current_user_tags.exists?(name: tag[:name])
-          if tag[:remove] == '1'
-            task.tags.destroy(current_user_tags.find_by(name: tag[:name]))
-          elsif !task.tags.exists?(name: tag[:name])
-            task.tags << current_user_tags.find_by(name: tag[:name])
+        if tag[:status] == 'remove'
+          task.tags.destroy(current_user_tags.find_by(name: tag[:name]))
+          task.touch
+        elsif tag[:status] == 'new' && tag[:name].present?
+          new_tag = Tag.find_or_initialize_by name: tag[:name], user_id: task.user_id
+          if new_tag.new_record?
+            new_tag.save
+            task.tags << new_tag
+            task.touch
+          elsif !task.tags.exists?(name: new_tag.name)
+            task.tags << new_tag
+            task.touch
           end
-        else
-          task.tags.create name: tag[:name], user_id: task.user_id
         end
       end
     end

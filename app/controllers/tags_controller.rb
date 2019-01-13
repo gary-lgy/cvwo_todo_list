@@ -1,5 +1,4 @@
 class TagsController < ApplicationController
-  # TODO: implement tag renaming and creation with AJAX
   # list all tags
   def index
     @tags = current_user_tags.order(name: :asc)

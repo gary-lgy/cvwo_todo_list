@@ -18,7 +18,7 @@
         <h5 class="task-title d-inline font-weight-bold"><%= task.title %></h5>
         <% if task.urgent? %>
           <%= urgent_icon %>
-        <% else task.overdue? %>
+        <% elsif task.overdue? %>
           <%= overdue_icon %>
         <% end %>
       </div>
@@ -42,7 +42,7 @@
         <div class="task-deadline d-inline">
           <%= utc_to_user_time(task.deadline).friendly_format %>
         </div>
-        <% if  task.overdue? %>
+        <% if task.overdue? %>
           <span class="text-danger">
             <%= ' ' + time_ago_in_words(task.deadline) + ' ago' %>
           </span>

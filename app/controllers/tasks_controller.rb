@@ -67,8 +67,10 @@ class TasksController < ApplicationController
     whitelisted = params.require(:task).permit(
       :title, :description, :deadline
     )
-    params_in_utc = helpers.task_params_in_utc whitelisted
-    helpers.append_user_id params_in_utc
+    if whitelisted[:deadline].present?
+      whitelisted[:deadline] = Time.at whitelisted[:deadline].to_i
+    end
+    helpers.append_user_id whitelisted
   end
 
   # alias to the helper method

@@ -56,6 +56,10 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
+    bootstrap4-datetime-picker-rails (0.3.1)
+      jquery-rails (~> 4.2, >= 4.2.0)
+      moment-timezone-rails (~> 1.0)
+      momentjs-rails (>= 2.10.5, <= 3.0.0)
     builder (3.2.3)
     byebug (10.0.2)
     capybara (3.12.0)
@@ -116,6 +120,10 @@ GEM
     mini_racer (0.2.4)
       libv8 (>= 6.3)
     minitest (5.11.3)
+    moment-timezone-rails (1.0.0)
+      momentjs-rails (>= 2.10.5, <= 3.0.0)
+    momentjs-rails (2.20.1)
+      railties (>= 3.1)
     msgpack (1.2.4)
     multi_json (1.13.1)
     nio4r (2.3.1)
@@ -215,6 +223,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap
+  bootstrap4-datetime-picker-rails
   byebug
   capybara (>= 2.15)
   chromedriver-helper
@@ -224,6 +233,7 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   mini_racer
+  momentjs-rails
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.2)

@@ -33,15 +33,6 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# use jquery-rails for jquery
-gem 'jquery-rails'
-
-# use Bootstrap for styling
-gem 'bootstrap'
-
-# use Font Awesome for icons
-gem 'font-awesome-sass'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -69,3 +60,16 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+################ Gems added during development ################
+# use jquery-rails for jquery
+gem 'jquery-rails'
+
+# use Bootstrap for styling
+gem 'bootstrap'
+
+# use Font Awesome for icons
+gem 'font-awesome-sass'
+
+# use Bootstrap 4 Datetime Picker Rails for datetime picker widget
+gem 'bootstrap4-datetime-picker-rails'
