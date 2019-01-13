@@ -38,9 +38,7 @@
     <%= f.label :tags, 'Tags: '%>
     <% @task.tags.each do |tag| %>
       <div class="tag-fields">
-        <div class="tag badge font-italic">
-          <%= tag.name %>
-        </div>
+        <%= tag_without_link tag %>
         <%= hidden_field_tag 'task[tags][][name]', tag.name %>
         <%= hidden_field_tag 'task[tags][][status]', 'existing' %>
         <%# JavaScript link to mark the 'remove'

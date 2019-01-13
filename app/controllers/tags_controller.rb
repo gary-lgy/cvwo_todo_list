@@ -4,13 +4,6 @@ class TagsController < ApplicationController
     @tags = current_user_tags.order(name: :asc)
   end
 
-  # show all tasks associated with a tag
-  def show
-    @tag = current_user_tags.find_by(name: params[:name])
-    @ongoing = @tag.tasks.ongoing.order(helpers.order)
-    @completed = @tag.tasks.completed.order(helpers.order)
-  end
-
   # destroy a tag (does not destroy associated tasks)
   def destroy
     @tag = current_user_tags.find_by(name: params[:name])

@@ -75,10 +75,16 @@ module LinkIconHelper
   end
 
   # generate a link to a tag, presented on a button
-  def tag_button(tag)
+  def tag_with_link(tag)
     link_to tag.name,
             '#',
             class: 'tag badge font-italic'
+  end
+
+  # generate a tag, without a link on it
+  def tag_without_link(tag)
+    content_tag :div, tag.name,
+                class: 'tag badge font-italic'
   end
 
   # generate a link to edit a task, presented on an icon

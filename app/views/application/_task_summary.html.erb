@@ -59,7 +59,7 @@
         <%= tag_icon %>
         <div class="task-tags d-inline">
           <% task.tags.each do |tag| %>
-            <%= tag_button(tag) %>
+            <%= tag_with_link(tag) %>
           <% end %>
         </div>
       </div>
