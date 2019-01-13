@@ -1,4 +1,3 @@
-# TODO: make sorting case insensitive
 $(document).on 'turbolinks:load', ->
   # only load on tasks index page
   if $('body.tasks.index').length
@@ -33,7 +32,7 @@ $(document).on 'turbolinks:load', ->
     # using the displayed task title
     sort_tasks_by_title = ->
       sort_tasks_with (a, b) ->
-        if $(a).find('.task-title').text() < $(b).find('.task-title').text() then -1 else 1
+        if $(a).find('.task-title').text().toLowerCase() < $(b).find('.task-title').text().toLowerCase() then -1 else 1
 
     # sort tasks on page load, based on last used order
     # default order is by time updated

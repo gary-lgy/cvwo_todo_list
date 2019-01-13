@@ -1,13 +1,12 @@
-# TODO: make searching case-insensitive
 # functions used to search for tasks
 $(document).on 'turbolinks:load', ->
   # only load on tasks index page
   if $('body.tasks.index').length
     # search for tasks by tags
     filter_tasks_by_search = ->
-      search_names = $('#search-tasks-by-tags').val().trim().split(' ')
+      search_names = $('#search-tasks-by-tags').val().trim().toLowerCase().split(' ')
       $('.task').each ->
-        tag_names = $('.task-tags', this).text()
+        tag_names = $('.task-tags', this).text().trim().toLowerCase()
         if search_names.toString().length == 0 or search_names.every((search_name) ->
           tag_names.includes(search_name))
           $(this).collapse 'show'
