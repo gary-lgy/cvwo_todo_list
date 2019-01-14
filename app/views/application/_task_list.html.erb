@@ -2,12 +2,12 @@
 
 <div id="tasks">
   <%# list ongoing tasks %>
-  <div>
-    <a href="#ongoing-tasks" data-toggle="collapse" class="text-dark" style="text-decoration: underline;">
-      <h2 class="d-inline">Ongoing</h2>
+  <div id="ongoing-tasks-heading">
+    <a href="#ongoing-tasks" data-toggle="collapse" class="text-dark">
+      <h2 class="d-inline"><%= "Ongoing (#{ongoing.size})" %></h2>
+      <%= reminder_for_urgent_tasks ongoing %>
+      <%= alert_for_overdue_tasks ongoing %>
     </a>
-    <%= reminder_for_urgent_tasks ongoing %>
-    <%= alert_for_overdue_tasks ongoing %>
   </div>
 
   <% if ongoing.any? %>
@@ -23,9 +23,11 @@
   <% end %>
 
   <%# list completed tasks %>
-  <a href="#completed-tasks" data-toggle="collapse" class="text-dark" style="text-decoration: underline;">
-    <h2>Completed (<%= completed.size %>)</h2>
-  </a>
+  <div id="completed-tasks-heading">
+    <a href="#completed-tasks" data-toggle="collapse" class="text-dark">
+      <h2 class="d-inline"><%= "Completed (#{completed.size})" %></h2>
+    </a>
+  </div>
   <div id="completed-tasks" class="collapse">
     <%= render partial: 'task_summary', collection: completed, as: 'task' %>
   </div>

@@ -1,3 +1,4 @@
+# TODO: convert input boxes to tags as user finishes typing
 # function for creating task and editing task
 $(document).on 'turbolinks:load', ->
   # load these functions only for new and edit pages
