@@ -3,34 +3,26 @@ $(document).on 'turbolinks:load', ->
   if $('body.tasks.index').length
     $(document).on 'show.bs.collapse', '#ongoing-tasks', ->
       localStorage.setItem 'ongoing-collapsed', '0'
-      $('#ongoing-tasks-heading').addClass("expanded")
 
     $(document).on 'show.bs.collapse', '#completed-tasks', ->
       localStorage.setItem 'completed-collapsed', '0'
-      $('#completed-tasks-heading').addClass("expanded")
 
     $(document).on 'hide.bs.collapse', '#ongoing-tasks', ->
       localStorage.setItem 'ongoing-collapsed', '1'
-      $('#ongoing-tasks-heading').removeClass("expanded")
 
     $(document).on 'hide.bs.collapse', '#completed-tasks', ->
       localStorage.setItem 'completed-collapsed', '1'
-      $('#completed-tasks-heading').removeClass("expanded")
 
     switch localStorage.getItem 'ongoing-collapsed'
       when '1'
         $('#ongoing-tasks').collapse('hide')
-        $('#ongoing-tasks-heading').removeClass("expanded")
       else # expand by default
         $('#ongoing-tasks').collapse('show')
-        $('#ongoing-tasks-heading').addClass("expanded")
     switch localStorage.getItem 'completed-collapsed'
       when '0'
         $('#completed-tasks').collapse('show')
-        $('#completed-tasks-heading').addClass("expanded")
       else # collapse by default
         $('#completed-tasks').collapse('hide')
-        $('#completed-tasks-heading').removeClass("expanded")
 
     $(document).on 'mouseenter', '#ongoing-tasks-heading, #completed-tasks-heading', (event) ->
       $(this).addClass("active")
