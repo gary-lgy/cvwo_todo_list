@@ -12,7 +12,7 @@ module TagsHelper
         if tag[:status] == 'remove'
           task.tags.destroy(current_user_tags.find_by(name: tag[:name]))
           task.touch
-        elsif tag[:status] == 'new' && tag[:name].present?
+        elsif tag[:status] == 'new'
           new_tag = Tag.find_or_initialize_by name: tag[:name], user_id: task.user_id
           if new_tag.new_record?
             new_tag.save

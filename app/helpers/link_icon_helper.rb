@@ -5,18 +5,6 @@ module LinkIconHelper
   #---------- Link-only helpers ----------#
   #########################################
   # generate a link to dynamically add a tag when editing a task
-  def link_to_add_tag
-    fields = content_tag :div, class: 'new-tag' do
-      text_field_tag('task[tags][][name]', nil, autocomplete: :off) +
-      hidden_field_tag('task[tags][][status]', 'new')
-    end
-    link_to '+ Add Tag',
-            '#',
-            class: 'add-tag-btn btn btn-sm btn-primary',
-            data: { fields: fields.delete("\n") }
-  end
-
-  # generate a link to tags#index
   def link_to_tags_path
     link_to 'Manage Tags', tags_path
   end

@@ -37,10 +37,10 @@
   <div class="form-group" id="tags">
     <%= f.label :tags, 'Tags: '%>
     <% @task.tags.each do |tag| %>
-      <div class="tag-fields">
+      <div class="tag-field">
         <%= tag_without_link tag %>
-        <%= hidden_field_tag 'task[tags][][name]', tag.name %>
-        <%= hidden_field_tag 'task[tags][][status]', 'existing' %>
+        <%= hidden_field_tag 'task[tags][][name]', tag.name, id: nil, class: 'task-tags-name' %>
+        <%= hidden_field_tag 'task[tags][][status]', 'existing', id: nil, class: 'task-tags-status' %>
         <%# JavaScript link to mark the 'remove'
             field and hide the div %>
         <a href="#" class="remove-tag-btn">
@@ -49,8 +49,9 @@
       </div>
     <% end %>
     <%# JavaScript link to add a new tag %>
-    <div>
-      <%= link_to_add_tag %>
+    <div id="add-tag-btn-field">
+      <%= link_to '+ Add Tag', '#', id: 'add-tag-btn',
+                  class: 'btn btn-sm btn-primary' %>
     </div>
   </div>
 
