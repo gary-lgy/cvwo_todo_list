@@ -29,15 +29,6 @@ $icon-color: var(--blue);
 }
 
 #clear-search-box {
-  position: absolute;
-  right: 3%;
-  top: 0;
-  bottom: 0;
-  height: 80%;
-  margin: auto;
-  color: black;
-  font-size: 20px;
-  z-index: 1000;
   &:hover {
     text-decoration: none;
   }

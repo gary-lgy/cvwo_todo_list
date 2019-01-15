@@ -11,6 +11,12 @@
                        class: 'form-control',
                        autofocus: false,
                        autocomplete: :off %>
-    <a href="#" id="clear-search-box">&times;</a>
+    <div class="input-group-append">
+      <a href="#" id="clear-search-box">
+        <div class="input-group-text">
+          <%= icon 'fas', 'times', style: 'line-height: 1.5rem;' %>
+        </div>
+      </a>
+    </div>
   </div>
 </form>
