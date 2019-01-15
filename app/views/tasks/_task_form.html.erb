@@ -2,40 +2,45 @@
 <%# form to build a new task or edit and existing task %>
 <%= form_with model: task, local: true do |f| %>
   <div class="form-group">
-    <%= f.label :title, 'Title: ' %>
+    <%= f.label :title, 'Title' %>
     <%= f.text_field :title, class: 'form-control',
                      required: true, autocomplete: :off, autofocus: true %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :description, 'Description (optional): ' %>
-    <%= f.text_area :description, class: 'form-control',
-                    size: '25x3', maxlength: 250 %>
+  <a href="#description-field" data-toggle="collapse" class="btn btn-sm btn-primary mb-2" id="add-description-btn">+ Add Description</a>
+  <div class="collapse" id="description-field">
+    <div class="form-group">
+      <%= f.text_area :description, class: 'form-control',
+                      size: '25x3', maxlength: 250 %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :deadline, 'Deadline (optional): ' %>
-    <div class="row">
-      <div class="col-sm-6">
-          <%= content_tag :div,
-                          class: 'input-group date',
-                          id: 'deadline-selector',
-                          data: {
-                              target_input: 'nearest',
-                              current: (task.deadline.nil? ? nil : task.deadline.iso8601)
-                          } do %>
-            <input type="text" class="form-control datetimepicker-input" data-target="#deadline-selector">
-            <div class="input-group-append" data-target="#deadline-selector" data-toggle="datetimepicker">
-              <div class="input-group-text"><%= icon 'fas', 'calendar-alt' %></div>
-            </div>
-          <% end %>
+  <br>
+
+  <a href="#deadline-field" data-toggle="collapse" class="btn btn-sm btn-primary mb-2" id="add-deadline-btn">+ Add Deadline</a>
+  <div class="collapse" id="deadline-field">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-6">
+            <%= content_tag :div,
+                            class: 'input-group date',
+                            id: 'deadline-selector',
+                            data: {
+                                target_input: 'nearest',
+                                current: (task.deadline.nil? ? nil : task.deadline.iso8601)
+                            } do %>
+              <input type="text" class="form-control datetimepicker-input" data-target="#deadline-selector">
+              <div class="input-group-append" data-target="#deadline-selector" data-toggle="datetimepicker">
+                <div class="input-group-text"><%= icon 'fas', 'calendar-alt' %></div>
+              </div>
+            <% end %>
+        </div>
       </div>
     </div>
   </div>
 
   <%# display each tag and give user the option to remove them %>
   <div class="form-group" id="tags">
-    <%= f.label :tags, 'Tags: '%>
     <% @task.tags.each do |tag| %>
       <div class="tag-field">
         <%= tag_without_link tag.name %>

@@ -65,7 +65,22 @@ $(document).on 'turbolinks:load', ->
     $(document).on 'click', 'input[type=submit]', (event) ->
       if ddl_selector.datetimepicker('date') != null
         ddl_seconds = ddl_selector.datetimepicker('date').unix()
-        $('form').append('<input type="text" name="task[deadline]" value=' + ddl_seconds + ' style="display: none;">')
+        $('form').append('<input type=hidden name="task[deadline]" value=' + ddl_seconds> +'>')
+
+    # change link name when user presses 'Add Description' or 'Add Deadline'
+    $(document).on 'show.bs.collapse', '#description-field', ->
+      $('#add-description-btn').text('- Remove Description')
+    $(document).on 'show.bs.collapse', '#deadline-field', ->
+      $('#add-deadline-btn').text('- Remove Deadline')
+
+    # remove content and reset button text when user clicks 'Remove Description' or 'Remove Deadline'
+    $(document).on 'hide.bs.collapse', '#description-field', ->
+      $('textarea', this).val("")
+      $('#add-description-btn').text('+ Add Description')
+    $(document).on 'hide.bs.collapse', '#deadline-field', ->
+      $('input[type=text]', this).val("")
+      $('#add-deadline-btn').text('+ Add Deadline')
+
 
 $(document).on 'turbolinks:before-cache', ->
   if $('body.tasks.edit, body.tasks.new').length
@@ -73,3 +88,7 @@ $(document).on 'turbolinks:before-cache', ->
     $(document).off 'click', '#add-tag-btn'
     $(document).off 'click', '.remove-tag-btn'
     $(document).off 'click', 'input[type=submit]'
+    $(document).off 'show.bs.collapse', '#description-field'
+    $(document).off 'show.bs.collapse', '#deadline-field'
+    $(document).off 'hide.bs.collapse', '#description-field'
+    $(document).off 'hide.bs.collapse', '#deadline-field'
