@@ -63,15 +63,15 @@ module LinkIconHelper
   end
 
   # generate a link to a tag, presented on a button
-  def tag_with_link(tag)
-    link_to tag.name,
+  def tag_with_link(tag_name)
+    link_to tag_name,
             '#',
             class: 'tag badge font-italic'
   end
 
   # generate a tag, without a link on it
-  def tag_without_link(tag)
-    content_tag :div, tag.name,
+  def tag_without_link(tag_name)
+    content_tag :div, tag_name,
                 class: 'tag badge font-italic'
   end
 

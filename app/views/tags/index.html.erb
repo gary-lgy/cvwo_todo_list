@@ -3,12 +3,11 @@
 <ul>
   <% @tags.each do |tag| %>
     <li>
-      <%= tag_without_link tag %>
+      <%= tag_without_link "#{tag.name} (#{tag.tasks.size.to_s})" %>
       <%= link_to tag_path(tag),
                   method: :delete,
                   data: { confirm: 'Sure to delete this tag? '\
                             'This does not delete its tasks. ' } do %>
-        <%# TODO: show number of tasks %>
         <%= icon 'far', 'trash-alt' %>
       <% end %>
     </li>

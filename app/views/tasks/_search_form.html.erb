@@ -1,5 +1,4 @@
 <%# Search box to search tasks by tag names %>
-<%# TODO: show tags under search box %>
 <form id="search-bar">
   <div class="input-group">
     <div class="input-group-prepend">
@@ -18,5 +17,20 @@
         </div>
       </a>
     </div>
+    <a href="#all-tags-list" data-toggle="collapse">
+      <div class="input-group-append">
+        <div class="input-group-text">
+            <%= icon 'fas', 'tags', style: 'line-height: 1.5rem; color: blue;' %>
+        </div>
+      </div>
+    </a>
   </div>
 </form>
+
+<div class="collapse" id="all-tags-list">
+  <div class="card card-body d-block" style="border-radius: 0 0 1rem 1rem;">
+    <% Tag.all.each do |tag| %>
+      <%= tag_with_link tag.name %>
+    <% end %>
+  </div>
+</div>
