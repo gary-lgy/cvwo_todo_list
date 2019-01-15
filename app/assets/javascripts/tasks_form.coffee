@@ -1,4 +1,3 @@
-# TODO: expand description and deadline fields only on demand
 # function for creating task and editing task
 $(document).on 'turbolinks:load', ->
   # load these functions only for new and edit pages
