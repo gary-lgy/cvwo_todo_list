@@ -1,21 +1,20 @@
 <%# local variables: task %>
-<%# TODO: simplify view %>
 
 <%# display the task in a Bootstrap 'card' entity %>
 <%= content_tag :div,
-                class: 'card mb-4 collapse show task' +
+                class: 'card collapse show task' +
                   (task.completed? ? ' completed' : ''),
                 data: {
                   'deadline' => task.deadline.to_i,
                   'time-updated' => task.updated_at.to_i
                 } do %>
   <%# empty/ticked circle, task title, status %>
-  <div class="card-header">
+  <div class="card-body">
     <div class="row">
-      <div class="col-1">
+      <div class="col flex-grow-0">
         <%= toggle_complete_icon task %>
       </div>
-      <div class="col-11">
+      <div class="col">
         <h5 class="task-title d-inline font-weight-bold"><%= task.title %></h5>
         <% if task.urgent? %>
           <%= urgent_icon %>
@@ -24,16 +23,14 @@
         <% end %>
       </div>
     </div>
-  </div>
 
   <%# description, deadline, tags %>
-  <div class="card-body">
     <% if task.description.present? %>
       <div class="row">
-        <div class="col-1">
+        <div class="col flex-grow-0 task-detail">
           <%= description_icon %>
         </div>
-        <div class="task-description col-11">
+        <div class="task-description col">
           <%= task.description %>
         </div>
       </div>
@@ -41,10 +38,10 @@
 
     <% if task.deadline.present? %>
       <div class="row">
-        <div class="col-1">
+        <div class="col flex-grow-0 task-detail">
           <%= deadline_icon %>
         </div>
-        <div class="col-11">
+        <div class="col">
           <div class="task-deadline task-deadline-utc">
             <%= task.deadline.iso8601 %>
           </div>
@@ -65,20 +62,20 @@
 
     <% if task.tags.any? %>
       <div class="row">
-        <div class="col-1">
+        <div class="col flex-grow-0 task-detail">
           <%= tag_icon %>
         </div>
-        <div class="task-tags col-11">
+        <div class="task-tags col">
           <% task.tags.each do |tag| %>
             <%= tag_with_link(tag.name) %>
           <% end %>
         </div>
       </div>
     <% end %>
-  </div>
 
-  <%# edit, delete %>
-  <div class="card-footer">
-    <%= render 'nav_links', task: task %>
+    <%# edit, delete %>
+    <div class="mt-2">
+      <%= render 'nav_links', task: task %>
+    </div>
   </div>
 <% end %>

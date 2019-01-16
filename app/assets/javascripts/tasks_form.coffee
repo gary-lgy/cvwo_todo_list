@@ -1,4 +1,5 @@
 # function for creating task and editing task
+# TODO: expand fields if attribute already present
 $(document).on 'turbolinks:load', ->
   # load these functions only for new and edit pages
   if $('body.tasks.edit, body.tasks.new').length

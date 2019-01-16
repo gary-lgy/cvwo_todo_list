@@ -15,10 +15,23 @@ $icon-color: var(--blue);
     margin-left: 10px;
   }
 
-  &.action-icon, &.details-icon {
+  &.checkbox-icon {
+    width: 10px;
+    font-size: 20px;
+  }
+  &.edit-icon, &.delete-icon {
     color: $icon-color;
     margin-right: 10px;
   }
+  &.details-icon {
+    color: $icon-color;
+  }
+}
+
+// indentation for task details
+.task-detail {
+  margin-left: 40px;
+  padding-right: 0 !important;
 }
 
 // strike-through for completed tasks
@@ -62,5 +75,20 @@ $icon-color: var(--blue);
         font-size: 2.5rem;
       }
     }
+  }
+}
+
+// remove rounded borders for tasks in the middle
+.task.card {
+  &:not(:first-of-type), &:not(:last-of-type) {
+    border-radius: 0;
+  }
+  &:first-of-type {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+  &:last-of-type {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
   }
 }

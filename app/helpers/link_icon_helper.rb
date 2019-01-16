@@ -55,9 +55,9 @@ module LinkIconHelper
   def toggle_complete_icon(task)
     link_to toggle_completed_task_path(task) do
       if task.completed?
-        icon 'far', 'check-circle', class: 'action-icon'
+        icon 'far', 'check-circle', class: 'checkbox-icon'
       else
-        icon 'far', 'circle', class: 'action-icon'
+        icon 'far', 'circle', class: 'checkbox-icon'
       end
     end
   end
@@ -78,7 +78,7 @@ module LinkIconHelper
   # generate a link to edit a task, presented on an icon
   def edit_task_icon(task)
     link_to edit_task_path(task) do
-      icon 'fas', 'edit', class: 'action-icon'
+      icon 'fas', 'edit', class: 'edit-icon'
     end
   end
 
@@ -87,7 +87,7 @@ module LinkIconHelper
     link_to task_path(task),
             method: :delete,
             data: { confirm: 'Are you sure?' } do
-      icon 'far', 'trash-alt', class: 'action-icon'
+      icon 'far', 'trash-alt', class: 'delete-icon'
     end
   end
 

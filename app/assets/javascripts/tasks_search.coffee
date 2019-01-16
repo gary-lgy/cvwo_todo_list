@@ -1,4 +1,5 @@
 # functions used to search for tasks
+# TODO: automatically display all tags when typing
 $(document).on 'turbolinks:load', ->
   # only load on tasks index page
   if $('body.tasks.index').length
