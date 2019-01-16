@@ -50,7 +50,8 @@ $(document).on 'turbolinks:load', ->
       icons:
         time: 'far fa-clock',
         clear: 'far fa-trash-alt',
-        close: 'fas fa-times'
+        close: 'fas fa-times',
+        today: 'fas fa-calendar-day'
       format: 'dddd, D MMMM YYYY, hh:mm a',
       defaultDate: $(ddl_selector).data('current'),
       sideBySide: true,
