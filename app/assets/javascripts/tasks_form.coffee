@@ -1,5 +1,4 @@
 # function for creating task and editing task
-# TODO: expand fields if attribute already present
 $(document).on 'turbolinks:load', ->
   # load these functions only for new and edit pages
   if $('body.tasks.edit, body.tasks.new').length
@@ -68,7 +67,7 @@ $(document).on 'turbolinks:load', ->
         ddl_seconds = ddl_selector.datetimepicker('date').unix()
         $('form').append('<input type=hidden name="task[deadline]" value=' + ddl_seconds> +'>')
 
-    # change link name when user presses 'Add Description' or 'Add Deadline'
+    # change text on buttons when user presses 'Add Description' or 'Add Deadline'
     $(document).on 'show.bs.collapse', '#description-field', ->
       $('#add-description-btn').text('- Remove Description')
     $(document).on 'show.bs.collapse', '#deadline-field', ->
@@ -81,6 +80,12 @@ $(document).on 'turbolinks:load', ->
     $(document).on 'hide.bs.collapse', '#deadline-field', ->
       $('input[type=text]', this).val("")
       $('#add-deadline-btn').text('+ Add Deadline')
+
+    # expand description and deadline button if editing a task already with these two fields
+    if $('#task_description').val().length
+      $('#description-field').collapse 'show'
+    if $('input[data-target="#deadline-selector"').val().length
+      $('#deadline-field').collapse 'show'
 
 
 $(document).on 'turbolinks:before-cache', ->
