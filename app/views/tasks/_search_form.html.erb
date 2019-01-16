@@ -17,16 +17,10 @@
         </div>
       </a>
     </div>
-    <a href="#all-tags-list" data-toggle="collapse">
-      <div class="input-group-append">
-        <div class="input-group-text">
-            <%= icon 'fas', 'tags', style: 'line-height: 1.5rem; color: grey;' %>
-        </div>
-      </div>
-    </a>
   </div>
 </form>
 
+<!-- tags list that will expand when search box receives focus -->
 <div class="collapse" id="all-tags-list">
   <div class="card card-body d-block" style="border-radius: 0 0 1rem 1rem;">
     <% current_user_tags.each do |tag| %>

@@ -1,5 +1,4 @@
 # functions used to search for tasks
-# TODO: automatically display all tags when typing
 $(document).on 'turbolinks:load', ->
   # only load on tasks index page
   if $('body.tasks.index').length
@@ -16,6 +15,13 @@ $(document).on 'turbolinks:load', ->
 
     $(document).on 'keyup', '#search-tasks-by-tags', ->
       filter_tasks_by_search()
+
+    # open tags list when the search bar receives focus
+    $(document).on 'focus', '#search-tasks-by-tags', ->
+      $('#all-tags-list').collapse 'show'
+
+    $(document).on 'blur', '#search-tasks-by-tags', ->
+      $('#all-tags-list').collapse 'hide'
 
     # clear the search box
     $(document).on 'click', '#clear-search-box', (event) ->
@@ -37,6 +43,7 @@ $(document).on 'turbolinks:before-cache', ->
     $(document).off 'keyup', '#search-tasks-by-tags'
     $(document).off 'click', '#clear-search-box'
     $(document).off 'click', '.tag'
-    # uncollapse all tasks
+    $(document).off 'focus', '#search-tasks-by-tags'
+    $(document).off 'blur', '#search-tasks-by-tags'
     $('.task').each ->
       $(this).collapse 'show'
