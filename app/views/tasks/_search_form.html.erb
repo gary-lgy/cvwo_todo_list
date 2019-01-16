@@ -29,7 +29,7 @@
 
 <div class="collapse" id="all-tags-list">
   <div class="card card-body d-block" style="border-radius: 0 0 1rem 1rem;">
-    <% Tag.all.each do |tag| %>
+    <% current_user_tags.each do |tag| %>
       <%= tag_with_link tag.name %>
     <% end %>
   </div>
