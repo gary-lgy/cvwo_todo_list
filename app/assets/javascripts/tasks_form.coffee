@@ -65,7 +65,7 @@ $(document).on 'turbolinks:load', ->
     $(document).on 'click', 'input[type=submit]', (event) ->
       if ddl_selector.datetimepicker('date') != null
         ddl_seconds = ddl_selector.datetimepicker('date').unix()
-        $('form').append('<input type=hidden name="task[deadline]" value=' + ddl_seconds> +'>')
+        $('form').append('<input type=hidden name="task[deadline]" value=' + ddl_seconds + '>')
 
     # change text on buttons when user presses 'Add Description' or 'Add Deadline'
     $(document).on 'show.bs.collapse', '#description-field', ->
