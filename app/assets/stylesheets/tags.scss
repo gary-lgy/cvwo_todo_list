@@ -2,9 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$tag-bg-color: #D7DD35;
-$tag-bg-color-hover: #a3a926;
-$tag-text-color: #000000;
+$tag-bg-color: var(--secondary);
+$tag-bg-color-hover: #979797;
+$tag-text-color: white;
 
 .tag {
   &:hover {
