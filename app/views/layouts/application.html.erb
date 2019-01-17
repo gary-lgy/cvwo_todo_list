@@ -28,7 +28,7 @@
   </nav>
 
   <%# display flash messages %>
-  <div class="container-fluid" id="alerts'">
+  <div class="container" id="alerts'">
       <% flash.each do |cat, msg| %>
         <%= content_tag :div,
                         class: 'alert alert-' + cat + ' fade show '\
@@ -44,6 +44,13 @@
     <%= yield %>
   </div>
 
-  <%# TODO: add footer and link to GitHub %>
+  <%# footer %>
+  <footer>
+    <%= link_to 'https://github.com/gary-lgy/cvwo_todo_list' do %>
+      <%= icon 'fab', 'github' %>
+    <% end %>
+    2019 Gary Liu Guangyuan, MIT License
+  </footer>
+
   </body>
 </html>
