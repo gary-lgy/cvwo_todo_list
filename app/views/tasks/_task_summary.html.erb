@@ -75,7 +75,8 @@
 
     <%# edit, delete %>
     <div class="mt-2">
-      <%= render 'nav_links', task: task %>
+      <%= edit_task_icon(task) %>
+      <%= destroy_task_icon(task) %>
     </div>
   </div>
 <% end %>
