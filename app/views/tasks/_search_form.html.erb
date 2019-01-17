@@ -1,30 +1,32 @@
 <%# Search box to search tasks by tag names %>
-<form id="search-bar">
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <div class="input-group-text"><%= icon 'fas', 'search' %></div>
+<div id="search-area">
+  <form>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><%= icon 'fas', 'search' %></div>
+      </div>
+      <%= search_field_tag :tag_names, nil,
+                         placeholder: 'Search tasks by tags...',
+                         id: 'search-bar',
+                         class: 'form-control',
+                         autofocus: false,
+                         autocomplete: :off %>
+      <div class="input-group-append">
+        <a href="#" id="clear-search-box">
+          <div class="input-group-text">
+            <%= icon 'fas', 'times', style: 'line-height: 1.5rem;' %>
+          </div>
+        </a>
+      </div>
     </div>
-    <%= search_field_tag :tag_names, nil,
-                       placeholder: 'Search tasks by tags...',
-                       id: 'search-tasks-by-tags',
-                       class: 'form-control',
-                       autofocus: false,
-                       autocomplete: :off %>
-    <div class="input-group-append">
-      <a href="#" id="clear-search-box">
-        <div class="input-group-text">
-          <%= icon 'fas', 'times', style: 'line-height: 1.5rem;' %>
-        </div>
-      </a>
-    </div>
-  </div>
-</form>
+  </form>
 
-<!-- tags list that will expand when search box receives focus -->
-<div class="collapse" id="all-tags-list">
-  <div class="card card-body d-block" style="border-radius: 0 0 1rem 1rem;">
-    <% current_user_tags.each do |tag| %>
-      <%= tag_with_link tag.name %>
-    <% end %>
+  <!-- tags list that will expand when search box receives focus -->
+  <div class="collapse" id="all-tags-list">
+    <div class="card card-body d-block" style="border-radius: 0 0 1rem 1rem;">
+      <% current_user_tags.each do |tag| %>
+        <%= tag_with_link tag.name %>
+      <% end %>
+    </div>
   </div>
 </div>

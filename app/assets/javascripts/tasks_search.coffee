@@ -4,7 +4,7 @@ $(document).on 'turbolinks:load', ->
   if $('body.tasks.index').length
     # search for tasks by tags
     filter_tasks_by_search = ->
-      search_names = $('#search-tasks-by-tags').val().trim().toLowerCase().split(' ')
+      search_names = $('#search-bar').val().trim().toLowerCase().split(' ')
       $('.task').each ->
         tag_names = $('.task-tags', this).text().trim().toLowerCase()
         if search_names.toString().length == 0 or search_names.every((search_name) ->
@@ -13,37 +13,41 @@ $(document).on 'turbolinks:load', ->
         else
           $(this).collapse 'hide'
 
-    $(document).on 'keyup', '#search-tasks-by-tags', ->
+    $(document).on 'keyup', '#search-bar', ->
       filter_tasks_by_search()
 
-    # open tags list when the search bar receives focus
-    $(document).on 'focus', '#search-tasks-by-tags', ->
+    # open tags list when user clicks on the search area
+    $(document).on 'click', '#search-area', (event) ->
+      event.stopPropagation()
       $('#all-tags-list').collapse 'show'
 
-    $(document).on 'blur', '#search-tasks-by-tags', ->
+    # hide the tags list when user clicks elsewhere
+    $(document).on 'click', 'body', ->
       $('#all-tags-list').collapse 'hide'
 
     # clear the search box
     $(document).on 'click', '#clear-search-box', (event) ->
-      $('#search-tasks-by-tags').val('')
+      $('#search-bar').val('')
       filter_tasks_by_search()
       event.preventDefault()
 
     # add tag name to search box upon clicking a tag
     $(document).on 'click', '.tag', (event) ->
-      search_box = $('#search-tasks-by-tags')
+      search_bar = $('#search-bar')
       tag_name = $(this).text()
-      search_box.val(search_box.val() + ' ' + tag_name) unless search_box.val().split(' ').includes(tag_name)
+      search_bar.val(search_bar.val() + ' ' + tag_name) unless search_bar.val().split(' ').includes(tag_name)
       filter_tasks_by_search()
+      $('#search-area').focus()
       event.preventDefault()
 
 $(document).on 'turbolinks:before-cache', ->
   if $('body.tasks.index').length
     # unbind event handlers before turbolinks caches the page
-    $(document).off 'keyup', '#search-tasks-by-tags'
+    $(document).off 'keyup', '#search-bar'
+    $(document).off 'click', '#search-area'
+    $(document).off 'click', 'body'
     $(document).off 'click', '#clear-search-box'
     $(document).off 'click', '.tag'
-    $(document).off 'focus', '#search-tasks-by-tags'
-    $(document).off 'blur', '#search-tasks-by-tags'
+    # show all tasks
     $('.task').each ->
       $(this).collapse 'show'
