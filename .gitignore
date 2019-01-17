@@ -25,3 +25,8 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore assignment and work-in-progress submissions
+/submissions/cvwo_assignment\[4471\].pdf
+/submissions/Final\ Submission\ Write-up.odt
+/submissions/Mid-Assignment\ Write-up.odt
