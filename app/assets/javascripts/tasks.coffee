@@ -6,3 +6,6 @@ $(document).on 'turbolinks:load', ->
   # convert utc time to local time
   $('.task-deadline-utc').each ->
     $(this).text(moment($(this).text().trim()).format("ddd, D MMM YYYY, kk:mm"))
+
+  # enable all bootstrap tooltips
+  $('[data-toggle="tooltip"]').tooltip()

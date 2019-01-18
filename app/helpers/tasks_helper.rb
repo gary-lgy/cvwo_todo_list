@@ -19,9 +19,19 @@ module TasksHelper
   def reminder_for_urgent_tasks(tasks)
     urgent_count = count_urgent(tasks)
     if urgent_count.positive?
+      content_tag :div,
+                  class: 'd-inline',
+                  title: (urgent_count > 1 ?
+                            "#{urgent_count} tasks are" :
+                            '1 task is') + ' due within one day',
+                  data: {
+                      toggle: 'tooltip',
+                      placement: 'top'
+                  } do
         urgent_icon +
-        (content_tag :span, urgent_count,
+        content_tag(:span, urgent_count,
                     class: 'badge badge-warning ml-1')
+      end
     else
       ''
     end
@@ -31,9 +41,19 @@ module TasksHelper
   def alert_for_overdue_tasks(tasks)
     overdue_count = count_overdue(tasks)
     if overdue_count.positive?
+      content_tag :div,
+                  class: 'd-inline',
+                  title: (overdue_count > 1 ?
+                              "#{overdue_count} tasks are" :
+                              '1 task is') + ' overdue',
+                  data: {
+                      toggle: 'tooltip',
+                      placement: 'top'
+                  } do
         overdue_icon +
-        (content_tag :span, overdue_count,
+        content_tag(:span, overdue_count,
                     class: 'badge badge-danger ml-1')
+      end
     else
       ''
     end

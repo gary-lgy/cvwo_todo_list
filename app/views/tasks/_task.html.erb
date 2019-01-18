@@ -17,9 +17,25 @@
       <div class="col">
         <h5 class="task-title d-inline font-weight-bold"><%= task.title %></h5>
         <% if task.urgent? %>
-          <%= urgent_icon %>
+          <%= content_tag :div,
+                          class: 'd-inline',
+                          title: 'This task is due within one day',
+                          data: {
+                              toggle: 'tooltip',
+                              placement: 'top'
+                          } do %>
+            <%= urgent_icon %>
+          <% end %>
         <% elsif task.overdue? %>
-          <%= overdue_icon %>
+          <%= content_tag :div,
+                          class: 'd-inline',
+                          title: 'This task is overdue',
+                          data: {
+                              toggle: 'tooltip',
+                              placement: 'top'
+                          } do %>
+            <%= overdue_icon %>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -27,7 +43,7 @@
   <%# description, deadline, tags %>
     <% if task.description.present? %>
       <div class="row">
-        <div class="col flex-grow-0 task-detail">
+        <div class="col flex-grow-0 task-detail" title="Description" data-toggle="tooltip" data-placement="left">
           <%= description_icon %>
         </div>
         <div class="task-description col">
@@ -38,7 +54,7 @@
 
     <% if task.deadline.present? %>
       <div class="row">
-        <div class="col flex-grow-0 task-detail">
+        <div class="col flex-grow-0 task-detail" title="Deadline" data-toggle="tooltip" data-placement="left">
           <%= deadline_icon %>
         </div>
         <div class="col">
@@ -48,11 +64,11 @@
           <div>
             <% if task.overdue? %>
               <span class="text-danger">
-                <%= ' overdue ' + time_ago_in_words(task.deadline) + ' ago' %>
+                <%= ' ' + time_ago_in_words(task.deadline) + ' overdue' %>
               </span>
             <% elsif task.urgent? %>
               <span style="color: orange;">
-                <%= ' due ' + distance_of_time_in_words_to_now(task.deadline) + ' later'%>
+                <%= ' due in ' + distance_of_time_in_words_to_now(task.deadline) %>
               </span>
             <% end %>
           </div>
@@ -62,7 +78,7 @@
 
     <% if task.tags.any? %>
       <div class="row">
-        <div class="col flex-grow-0 task-detail">
+        <div class="col flex-grow-0 task-detail" title="Tags" data-toggle="tooltip" data-placement="left">
           <%= tag_icon %>
         </div>
         <div class="task-tags col">

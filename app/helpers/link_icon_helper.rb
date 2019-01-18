@@ -39,10 +39,22 @@ module LinkIconHelper
   # depending on whether the task is completed, the icon will
   # be an empty circle or a ticked circle
   def toggle_complete_icon(task)
-    link_to toggle_completed_task_path(task) do
-      if task.completed?
+    if task.completed?
+      link_to toggle_completed_task_path(task),
+              title: 'Mark as incomplete',
+              data: {
+                  toggle: 'tooltip',
+                  placement: 'top'
+              } do
         icon 'far', 'check-circle', class: 'checkbox-icon'
-      else
+      end
+    else
+      link_to toggle_completed_task_path(task),
+              title: 'Mark as complete',
+              data: {
+                  toggle: 'tooltip',
+                  placement: 'top'
+              } do
         icon 'far', 'circle', class: 'checkbox-icon'
       end
     end
@@ -63,7 +75,12 @@ module LinkIconHelper
 
   # generate a link to edit a task, presented on an icon
   def edit_task_icon(task)
-    link_to edit_task_path(task) do
+    link_to edit_task_path(task),
+            title: 'Edit task',
+            data: {
+                toggle: 'tooltip',
+                placement: 'top'
+            } do
       icon 'fas', 'edit', class: 'edit-icon'
     end
   end
@@ -72,7 +89,12 @@ module LinkIconHelper
   def destroy_task_icon(task)
     link_to task_path(task),
             method: :delete,
-            data: { confirm: 'Are you sure?' } do
+            title: 'Delete task',
+            data: {
+                confirm: 'Are you sure?',
+                toggle: 'tooltip',
+                placement: 'top'
+            } do
       icon 'far', 'trash-alt', class: 'delete-icon'
     end
   end

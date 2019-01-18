@@ -12,7 +12,7 @@
 
   <% if ongoing.any? %>
     <div id="ongoing-tasks" class="collapse">
-      <%= render partial: 'task_summary', collection: ongoing, as: 'task' %>
+      <%= render ongoing %>
     </div>
   <% else %>
     <%= image_tag 'no_tasks_man_relaxing.jpg',
@@ -29,6 +29,6 @@
     </a>
   </div>
   <div id="completed-tasks" class="collapse">
-    <%= render partial: 'task_summary', collection: completed, as: 'task' %>
+    <%= render completed %>
   </div>
 </div>
