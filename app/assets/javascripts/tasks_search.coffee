@@ -3,6 +3,11 @@ $(document).on 'turbolinks:load', ->
   # only load on tasks index page
   if $('body.tasks.index').length
 
+    # get searched tags in an array
+    get_searched_tags = ->
+      str = $('#search-bar').val().trim().toLowerCase().replace(/,\s+/g, ',')
+      if str == '' then [] else str.split(',')
+
     # remove excessive whitespace in a string
     clean_string = (str) ->
       str.trim().replace(/\s+/g, ' ').toLowerCase()
@@ -27,7 +32,7 @@ $(document).on 'turbolinks:load', ->
     # on search bar value change:
     # filter tasks and toggle tags' active class according to the search items
     $(document).on 'input', '#search-bar', ->
-      tags_to_display = string_to_array($('#search-bar').val())
+      tags_to_display = get_searched_tags()
       $('.tag').each ->
         if tags_to_display.includes $(this).text()
           $(this).addClass('active')
@@ -45,12 +50,12 @@ $(document).on 'turbolinks:load', ->
     $(document).on 'click', '.tag', (event) ->
       event.preventDefault()
       tag_name = $(this).text()
-      tags_to_display = string_to_array($('#search-bar').val())
+      tags_to_display = get_searched_tags()
       if tags_to_display.includes(tag_name)
         tags_to_display.splice(tags_to_display.indexOf(tag_name), 1)
       else
         tags_to_display.push(tag_name)
-      $('#search-bar').val(tags_to_display.toString().replace(/,/g, ' '))
+      $('#search-bar').val(tags_to_display.toString().replace(/,/g, ', '))
       $('#search-bar').trigger 'input'
 
     # open tags list when user clicks on the search area
