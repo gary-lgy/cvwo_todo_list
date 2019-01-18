@@ -5,14 +5,25 @@
 $tag-bg-color: var(--secondary);
 $tag-bg-color-hover: #979797;
 $tag-text-color: white;
+$tag-bg-color-active: #ffb746;
+$tag-bg-color-active-hover: #cb9336;
+$tag-text-color-active: black;
 
 .tag {
+  color: $tag-text-color;
+  text-decoration: none;
+  background-color: $tag-bg-color;
   &:hover {
     color: $tag-text-color;
     text-decoration: none;
-    background-color: $tag-bg-color-hover !important;
+    background-color: $tag-bg-color-hover;
   }
-  color: $tag-text-color;
-  text-decoration: none;
-  background-color: $tag-bg-color !important;
+  &.active {
+    color: $tag-text-color-active;
+    text-decoration: none;
+    background-color: $tag-bg-color-active;
+    &:hover {
+      background-color: $tag-bg-color-active-hover;
+    }
+  }
 }
