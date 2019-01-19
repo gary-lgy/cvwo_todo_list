@@ -61,11 +61,12 @@ $(document).on 'turbolinks:load', ->
       allowInputToggle: true
     ddl_selector.datetimepicker(options)
 
-    # add deadline to a input field, if deadline is provided by user
+    # add deadline to a hidden field
     $(document).on 'click', 'input[type=submit]', (event) ->
+      new_ddl_hidden_field = $('<input type=hidden name="task[deadline]">').appendTo('form')
       if ddl_selector.datetimepicker('date') != null
         ddl_seconds = ddl_selector.datetimepicker('date').unix()
-        $('form').append('<input type=hidden name="task[deadline]" value=' + ddl_seconds + '>')
+        new_ddl_hidden_field.val(ddl_seconds)
 
     # change text on buttons when user presses 'Add Description' or 'Add Deadline'
     $(document).on 'show.bs.collapse', '#description-field', ->
@@ -78,7 +79,7 @@ $(document).on 'turbolinks:load', ->
       $('textarea', this).val("")
       $('#add-description-btn').text('+ Add Description')
     $(document).on 'hide.bs.collapse', '#deadline-field', ->
-      $('input[type=text]', this).val("")
+      ddl_selector.datetimepicker('clear')
       $('#add-deadline-btn').text('+ Add Deadline')
 
     # expand description and deadline button if editing a task already with these two fields

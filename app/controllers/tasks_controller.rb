@@ -70,8 +70,12 @@ class TasksController < ApplicationController
     whitelisted = params.require(:task).permit(
       :title, :description, :deadline
     )
+    # if deadline is supplied, convert it to a Time object
+    # otherwise, leave it as nil
     if whitelisted[:deadline].present?
       whitelisted[:deadline] = Time.at whitelisted[:deadline].to_i
+    else
+      whitelisted[:deadline] = nil
     end
     helpers.append_user_id whitelisted
   end
