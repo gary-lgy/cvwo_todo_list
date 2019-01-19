@@ -24,13 +24,6 @@ $(document).on 'turbolinks:load', ->
       else # collapse by default
         $('#completed-tasks').collapse('hide')
 
-    $(document).on 'mouseenter', '#ongoing-tasks-heading, #completed-tasks-heading', (event) ->
-      $(this).addClass("active")
-
-    $(document).on 'mouseleave', '#ongoing-tasks-heading, #completed-tasks-heading', (event) ->
-      $(this).removeClass('active')
-
-
 $(document).on 'turbolinks:before-cache', ->
   if $('body.tasks.index').length
     $(document).off 'show.bs.collapse', '#ongoing-tasks'

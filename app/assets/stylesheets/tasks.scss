@@ -65,17 +65,6 @@ $icon-color: var(--blue);
     }
   }
   font-size: 1.5rem;
-  transition: font-size 0.5s;
-
-  // increase font size on mouse hover for desktops
-  // @include media-breakpoint-up(lg)
-  @media screen and (min-width: 992px) {
-    &.active {
-      h2 {
-        font-size: 2.5rem;
-      }
-    }
-  }
 }
 
 // remove rounded borders for tasks in the middle
