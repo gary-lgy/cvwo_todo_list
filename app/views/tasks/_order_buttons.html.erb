@@ -8,19 +8,30 @@
                     title: 'Order by last modified time',
                     data: {
                         toggle: 'tooltip',
+                        placement: 'top'
                     } do %>
       <input type="radio" autocomplete="off">
       Default
     <% end %>
   <%= content_tag :label,
                   id: 'sort-tasks-by-deadline',
-                  class: 'btn btn-secondary' do %>
+                  class: 'btn btn-secondary',
+                  title: 'Order by deadline',
+                  data: {
+                      toggle: 'tooltip',
+                      placement: 'top'
+                  } do %>
     <input type="radio">
     Deadline
   <% end %>
   <%= content_tag :label,
                   id: 'sort-tasks-by-title',
-                  class: 'btn btn-secondary' do %>
+                  class: 'btn btn-secondary',
+                  title: 'Order by title',
+                  data: {
+                      toggle: 'tooltip',
+                      placement: 'top'
+                  } do %>
     <input type="radio">
     Title
   <% end %>

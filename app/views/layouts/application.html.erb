@@ -15,15 +15,35 @@
 
   <%# a navigational bar to use throughout the app %>
   <nav class="navbar navbar-expand navbar-dark sticky-top mb-3" id="main-nav">
-    <%= link_to tasks_path, class: 'navbar-brand' do %>
+    <%= link_to tasks_path,
+                class: 'navbar-brand',
+                title: 'View Tasks',
+                data: {
+                    toggle: 'tooltip',
+                    placement: 'bottom'
+                } do %>
       <h2 class="font-weight-bold">
         <%= icon 'fas', 'check-square' %>
         To-Do List
       </h2>
     <% end %>
     <div class="navbar-nav ml-auto">
-      <%= link_to 'New Task', new_task_path, class: 'nav-link nav-item text-white' %>
-      <%= link_to 'Manage Tags', tags_path, class: 'nav-link nav-item text-white' %>
+      <%= link_to 'New Task',
+                  new_task_path,
+                  class: 'nav-link nav-item text-white',
+                  title: 'Create Task',
+                  data: {
+                      toggle: 'tooltip',
+                      placement: 'bottom'
+                  } %>
+      <%= link_to 'Manage Tags',
+                  tags_path,
+                  class: 'nav-link nav-item text-white',
+                  title: 'Manage Tags',
+                  data: {
+                      toggle: 'tooltip',
+                      placement: 'bottom'
+                  } %>
     </div>
   </nav>
 
