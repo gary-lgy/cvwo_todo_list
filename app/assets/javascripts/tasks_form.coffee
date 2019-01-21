@@ -22,6 +22,8 @@ $(document).on 'turbolinks:load', ->
           new_tag_field.remove()
         else
           $(this).hide()
+          # enforce lowercase restriction on tag names
+          $(this).val($(this).val().toLowerCase())
           new_tag_field.append('<div class="tag badge font-italic">' + $(this).val() + '</div> ')
           new_tag_field.append('<a href="#" class="remove-tag-btn">\
             <i class="far fa-trash-alt"></i>\
