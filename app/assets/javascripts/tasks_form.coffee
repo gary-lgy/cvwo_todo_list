@@ -70,24 +70,40 @@ $(document).on 'turbolinks:load', ->
         ddl_seconds = ddl_selector.datetimepicker('date').unix()
         new_ddl_hidden_field.val(ddl_seconds)
 
-    # change text on buttons when user presses 'Add Description' or 'Add Deadline'
+    # focus the relevant fields
+    # when user presses 'Add Description' or 'Add Deadline'
+    $(document).on 'click', '#add-description-btn', (event) ->
+      # have to use setTimeout (otherwise focus won't shift because the textarea is not fully shown yet'
+      fcs = ->
+        $('#task_description').focus()
+      setTimeout(fcs, 100)
+    $(document).on 'click', '#add-deadline-btn', (event) ->
+      fcs = ->
+        $('input', ddl_selector).focus()
+      setTimeout(fcs, 100)
+
+    # change text on buttons when the fields are shown / collapsed
     $(document).on 'show.bs.collapse', '#description-field', ->
       $('#add-description-btn').text('- Remove Description')
+      $('#add-description-btn').attr('id', 'remove-description-btn')
     $(document).on 'show.bs.collapse', '#deadline-field', ->
       $('#add-deadline-btn').text('- Remove Deadline')
+      $('#add-deadline-btn').attr('id', 'remove-deadline-btn')
 
     # remove content and reset button text when user clicks 'Remove Description' or 'Remove Deadline'
     $(document).on 'hide.bs.collapse', '#description-field', ->
       $('textarea', this).val("")
-      $('#add-description-btn').text('+ Add Description')
+      $('#remove-description-btn').text('+ Add Description')
+      $('#remove-description-btn').attr('id', 'add-description-btn')
     $(document).on 'hide.bs.collapse', '#deadline-field', ->
       ddl_selector.datetimepicker('clear')
-      $('#add-deadline-btn').text('+ Add Deadline')
+      $('#remove-deadline-btn').text('+ Add Deadline')
+      $('#remove-deadline-btn').attr('id', 'add-deadline-btn')
 
     # expand description and deadline button if editing a task already with these two fields
     if $('#task_description').val().length
       $('#description-field').collapse 'show'
-    if $('input[data-target="#deadline-selector"').val().length
+    if ddl_selector.datetimepicker 'date'
       $('#deadline-field').collapse 'show'
 
 
@@ -97,6 +113,8 @@ $(document).on 'turbolinks:before-cache', ->
     $(document).off 'click', '#add-tag-btn'
     $(document).off 'click', '.remove-tag-btn'
     $(document).off 'click', 'input[type=submit]'
+    $(document).off 'click', '#add-description-btn'
+    $(document).off 'click', '#add-deadline-btn'
     $(document).off 'show.bs.collapse', '#description-field'
     $(document).off 'show.bs.collapse', '#deadline-field'
     $(document).off 'hide.bs.collapse', '#description-field'
