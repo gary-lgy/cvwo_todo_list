@@ -66,7 +66,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails'
 
 # use Bootstrap for styling
-gem 'bootstrap'
+gem 'bootstrap', '>= 4.3.1'
 
 # use Font Awesome for icons
 gem 'font-awesome-sass'
